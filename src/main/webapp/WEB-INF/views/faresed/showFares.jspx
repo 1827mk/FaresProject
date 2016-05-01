@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <c:set scope="request" var="LABEL_POSITION"><spring:message code="" text="Position"></spring:message></c:set>
+    <c:set scope="request" var="LABEL_POSITION_CODE"><spring:message code="" text="Position Code"></spring:message></c:set>
+    <c:set scope="request" var="LABEL_POSITION_NAME"><spring:message code="" text="Position Name"></spring:message></c:set>
+    <c:set scope="request" var="LABEL_LIN_EAPPROVE"><spring:message code="" text="Line Approve"></spring:message></c:set>
+    <c:set scope="request" var="LABEL_LEVEL"><spring:message code="" text="Level"></spring:message></c:set>
+    <c:set scope="request" var="LABEL_ADD_LINE_APPROVE"><spring:message code="" text="Add Line Approver"></spring:message></c:set>
+    <c:set scope="request" var="BUTTON_SAVE"><spring:message code="" text="Save"></spring:message></c:set>
+    <c:set scope="request" var="BUTTON_CANCEL"><spring:message code="" text="Cancel"></spring:message></c:set>
+    <c:set scope="request" var="BUTTON_OK"><spring:message code="" text="Ok"></spring:message></c:set>
+    <c:set scope="request" var="LABEL_DELETE_TEXT"><spring:message code="" text="To delete the data?"></spring:message></c:set>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-offset-2" style="text-align:right;margin-top: 5px"><h4>${LABEL_POSITION}:</h4></label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="code" class="form-control" type="department-lov" autocomplete="off" >
+                                              <span class="input-group-btn">
+                                                   <button class="btn btn-default" type="button" id="searchLineApprovePositionBtn">
+                                                      <span class="fa fa-search">
+                                                          <jsp:text/>
+                                                      </span>
+                                                   </button>
+                                              </span>
+                                        </input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="form-horizontal">
+                <div class="col-sm-12">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-material-green-500 btn-raised" id="add" data-toggle="modal" data-target="#modalAddLineApprove"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-material-red-500 btn-raised" id="delete" ><span class="glyphicon glyphicon-minus"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-horizontal">
+                <div class="col-md-12">
+                    <div class="well">
+                        <form class="form-horizontal">
+                            <table class="table table-responsive" id="general_table" >
+                                <thead>
+                                <th>
+                                    <div align="center">
+                                        <input id="checkall" type="checkbox" onclick="checkBoxAll()" />
+                                    </div>
+                                </th>
+                                <th>${LABEL_POSITION_CODE}</th>
+                                <th>${LABEL_POSITION_NAME}</th>
+                                <th>${LABEL_LIN_EAPPROVE}</th>
+                                </thead>
+                                <tbody id="tbodyLineApproveGeneral"></tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <util:pagingutil id="paginglineapproveposition"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalAddLineApprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title">${LABEL_ADD_LINE_APPROVE}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" style="margin-top: 5px">${LABEL_POSITION}:</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input id="selectPosition" class="form-control" type="department-lov" autocomplete="off" >
+                                        <span class="input-group-btn">
+                                             <button class="btn btn-default" type="button" id="searchBtnModalAdd">
+                                                <span class="fa fa-search">
+                                                    <jsp:text/>
+                                                </span>
+                                             </button>
+                                        </span>
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center remove-margin-bottom">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-material-blue-500 remove-margin-bottom" id="saveLineApprove">Save</button>
+                                <button type="button" class="btn btn-material-red-500 remove-margin-bottom" id="cancelLineApprove">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" name="Delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h4 class="modal-title">${deletemodalname}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <center><label class="control-label required">${LABEL_DELETE_TEXT}</label></center>
+                                <div class="col-sm-7">
+                                    <!--<input id="codeDelete" type="text" class="form-control" data-toggle="popover" data-placement="bottom" data-content="${MSG_CHOOSE_REQUIRE}"/>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button id="deleteData" type="button" class="btn btn-sm btn-primary">${BUTTON_OK}</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">${BUTTON_CANCEL}</button>
+                    </center>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal-->
+
+
+    <!-- alertModal-->
+    <div id="alertModal" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <label id="detailAlert"></label>
+                    </center>
+                </div>
+                <div class="modal-footer border">
+                    <center>
+                        <button id="modalAlertBtnOk" class="btn btn-sm btn-primary"  data-dismiss="modal">OK</button>
+                    </center>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- alertModal-->
+    <div id="alertModalAdd" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <label id="detailAlertAdd"></label>
+                    </center>
+                </div>
+                <div class="modal-footer border">
+                    <center>
+                        <button id="modalAlertBtnAddOk" class="btn btn-sm btn-primary"  data-dismiss="modal">OK</button>
+                    </center>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- alertModal-->
+    <div id="alertModalDelete" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <label id="detailAlertDelete"></label>
+                    </center>
+                </div>
+                <div class="modal-footer border">
+                    <center>
+                        <button id="modalAlertDeleteBtnOk" class="btn btn-sm btn-primary"  data-dismiss="modal">OK</button>
+                    </center>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <spring:url value="/resources/scripts/util/pagingUtil.js" var="pagingUtil" />
+    <script src="${pagingUtil}" type="text/javascript"><!--Not Empty --></script>
+    <spring:url value="/resources/scripts/util/UtilLovBoardComBination.js" var="utilLovBoardComBination" />
+    <script src="${utilLovBoardComBination}" type="text/javascript"><!--Not Empty --></script>
+    <spring:url value="/resources/scripts/faresJs/showFares.js" var="script" />
+    <script src="${script}" type="text/javascript"><!--Not Empty --></script>
+
+</div>
