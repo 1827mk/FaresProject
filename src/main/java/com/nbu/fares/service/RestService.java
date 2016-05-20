@@ -13,26 +13,18 @@ public class RestService extends AbstractFaresEngine {
 
     static Logger logger = LoggerFactory.getLogger(RestService.class);
 
-//    public ResponseEntity<String> findAllEquipment1(){
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://" + this.HRMSServer + "/equipments/findAllEquipment";
-//        System.out.print("REST:"+url);
-//        return getResultStringByTypeHttpMethodAndBodyContent("", HttpMethod.GET,url,restTemplate);
-//    }
-//
-//    public ResponseEntity<String> findAllEquipmenttype(){
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://" + this.HRMSServer + "/equipmenttypes/findAllEquipmenttype";
-////        System.out.print("REST:"+url);
-//        return getResultStringByTypeHttpMethodAndBodyContent("", HttpMethod.GET,url,restTemplate);
-//    }
-//
-//    public ResponseEntity<String> findIdDateByDate(String date,Long idSeedRice){
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://" + this.HRMSServer + "/dateprices/findIdDateByDate?date="+date+"&idSeedRice="+idSeedRice;
-//        return getResultStringByTypeHttpMethodAndBodyContent("", HttpMethod.GET,url,restTemplate);
-//    }
+    public ResponseEntity<String> findAllFaresFromEngine(){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://" + this.HRMSServer + "/fareses/findAllFares";
+        System.out.print("REST:"+url);
+        return getResultStringByTypeHttpMethodAndBodyContent("", HttpMethod.GET,url,restTemplate);
+    }
 
+    public ResponseEntity<String> findFaresFromEngine(String code){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://" + this.HRMSServer + "/fareses/findFaresByCode/"+code;
+        return getResultStringByTypeHttpMethodAndBodyContent("parameters", HttpMethod.GET,url,restTemplate);
+    }
 
 
 }
