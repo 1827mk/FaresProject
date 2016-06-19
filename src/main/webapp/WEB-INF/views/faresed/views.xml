@@ -5,7 +5,8 @@
 
 <tiles-definitions>
     <definition name="faresed/showFares" extends="default">
-        <put-attribute name="body" value="/WEB-INF/views/faresed/showFares.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/faresed/fares.html" />
     </definition>
+
 
 </tiles-definitions>

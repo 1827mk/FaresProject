@@ -9,6 +9,3 @@ mvn clean compile package -Dmaven.test.skip=true tomcat7:redeploy -P deploy-ss-d
 
 *Run Create structure
 mvn clean compile -Dspring.profiles.active=create-structure-derby -Dmaven.test.skip=true -Djetty.port=8083 jetty:run -P create-derby-server
-
-
-Hello
