@@ -29,12 +29,6 @@
     <spring:url value="/resources/styles/ihover.css" var="ihover_css_url" />
     <spring:url value="/resources/styles/standard.css" var="standard_css_url" />
 
-    <!--mdb-->
-    <spring:url value="/resources/styles/mdb.css" var="mdb_css_url" />
-    <spring:url value="/resources/styles/style.css" var="style_css_url" />
-    <link rel="stylesheet" type="text/css" href="${mdb_css_url}" />
-    <link rel="stylesheet" type="text/css" href="${style_css_url}" />
-    <!--mdb-->
 
     <link rel="stylesheet" type="text/css" href="${bootstrap_css_url}" />
     <link rel="stylesheet" type="text/css" href="${fontAwesome_css_url}" />

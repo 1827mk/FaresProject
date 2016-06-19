@@ -35,20 +35,63 @@ public class FaresController_Custom_Controller {
     return restService.findAllFaresFromEngine();
     }
 
-    @RequestMapping(value = "/findFares", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "/findAllSource",method = RequestMethod.GET,headers = "Accept=application/json")
+    public ResponseEntity<String> findAllSource(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return restService.findAllSourceFromEnging();
+    }
+
+    @RequestMapping(value = "/searchAll", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> findFares(@RequestParam(value = "faresCode",required = false)String code) {
+    public ResponseEntity<String> searchAll(@RequestParam(value = "source",required = false)String source,
+                                            @RequestParam(value = "destination",required = false)String destination) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;
         try{
-            logger.info("==============find by code================");
-            System.out.print("findFares controller"+code+"\n");
-            return   restService.findFaresFromEngine(code);
+            logger.error("searchAll =="+source+"=="+destination+"=="+"\n");
+            return   restService.searchAll(source,destination);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
     }
+
+    @RequestMapping(value = "/searchTransport", method = RequestMethod.GET, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> searchTransport(@RequestParam(value = "source",required = false)String source,
+                                              @RequestParam(value = "destination",required = false)String destination,
+                                              @RequestParam(value = "tranCodes",required = false)String tranCode) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        ResponseEntity<String> result = null;
+        try{
+            logger.error("searchPlane =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
+            return   restService.searchTransport(source,destination,tranCode);
+        }catch (Exception e){
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @RequestMapping(value = "/searchFlightTransport", method = RequestMethod.GET, headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> searchFlightTransport(@RequestParam(value = "source",required = false)String source,
+                                                  @RequestParam(value = "destination",required = false)String destination,
+                                                  @RequestParam(value = "trainCode",required = false)String trainCode,
+                                                  @RequestParam(value = "busCode",required = false)String busCode) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        ResponseEntity<String> result = null;
+        try{
+            logger.error("searchPlane =="+source+"=="+destination+"=="+trainCode+"=="+busCode+"=="+"\n");
+            return   restService.searchFlightTransport(source,destination,trainCode,busCode);
+        }catch (Exception e){
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
 
 }
