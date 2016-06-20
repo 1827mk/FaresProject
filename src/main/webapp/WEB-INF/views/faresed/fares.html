@@ -26,21 +26,28 @@
         /*}*/
 
         .well{
-            margin-top: 5px;
+            /*margin-top: 0px;*/
             margin-left: 50px;
+            z-index: 10000;
+            position: relative;
         }
         .changeWell{
-            margin-top: 10px;
+            margin-top: 50px;
             margin-left: 0px;
+            z-index: 10000;
         }
 
         .wellWidth720{
             width: 720px;
+            margin-top: 50px;
+            z-index: 9999;
         }
         .wellWidth8000{
+            margin-top: -50px;
             padding-right: 0px;
             padding-left: 0px;
             width: 800px;
+            z-index: 9999;
         }
         .btn270{
             width: 270px;
@@ -76,8 +83,8 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
         @media
-        only screen and (max-width: 760px),
-        (min-device-width: 414px) and (max-device-width: 980px) {
+        only screen and (max-width: 768px),
+        (min-device-width: 414px) and (max-device-width: 1024px) {
 
             /* Force table to not be like tables anymore */
             table, thead, tbody, th, td, tr {
@@ -138,6 +145,24 @@ and also iPads specifically.
         table#tableFares.table.table-responsive.dataTable.no-footer tbody#tbodyFares.table.table-responsive tr.odd td center{
             font-size: small;
         }
+
+        @media
+        only screen and (max-width: 767px),
+        (min-device-width: 414px) and (max-device-width: 767px) {
+
+        }
+
+        @media
+        only screen and (max-width: 1920px),
+        (min-device-width: 768px) and (max-device-width: 1920px) {
+
+        }
+
+
+
+        /*#ulHearder {*/
+            /*margin-left: 50px;*/
+        /*}*/
     </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -414,7 +439,7 @@ and also iPads specifically.
             <div class="row">
                 <div class="col-sm-3" id="check768">
                     <div class="form-horizontal">
-                        <div class="awe-search-tabs tabs col-am-3" style="width: 310px;">
+                        <div class="awe-search-tabs tabs col-sm-3" style="width: 310px;">
                             <ul>
                                 <li>
                                     <a href="#awe-search-tabs-1">
