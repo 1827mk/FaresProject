@@ -12,26 +12,22 @@ $(window).on('load resize', function() {
     if (screen.width < 1200) {
         $("#check768").removeClass("col-sm-3");
         $("#check768").addClass("col-sm-6");
-        // $('#wellCustom').removeClass('well');
         $('#wellCustom').addClass('changeWell');
-
     }
     else {
 
         $("#check768").removeClass("col-sm-6");
         $("#check768").addClass("col-sm-3");
         $('#wellCustom').removeClass('changeWell');
-        // $('#wellCustom').addClass('well');
     }
 
-    if (screen.width > 980) {
+    if (screen.width > 1024) {
         $('#wellCustom').addClass('wellWidth8000');
         $('#wellCustom').removeClass('wellWidth720');
     }
     else {
         $('#wellCustom').addClass('wellWidth720');
         $('#wellCustom').removeClass('wellWidth8000');
-
     }
 
     if (screen.width < 767) {
@@ -45,12 +41,9 @@ $(window).on('load resize', function() {
         $('.btn-primary').removeClass('btn270');
         // $('#wellCustom').addClass('wellWidth720');
         // $('#wellCustom').addClass('wellWidth8000');
-
     }
 
 })
-
-
 
 function clearAll() {
 
@@ -140,15 +133,78 @@ function sourceAutoComplate() {
     // console.log(dataCheck);
 }
 
-
 function findAllFares(){
-//     var data = $.ajax({
-//         type: "GET", headers: { Accept: 'application/json' },
-//         contentType: "application/json; charset=utf-8",
-//         dataType: "json",
-//         url: session['context']+'/service/findAllFares',
-//         async: false
-//     }).responseJSON;
+    var faresData = $.ajax({
+        type: "GET", headers: { Accept: 'application/json' },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        url: session['context']+'/service/findAllFares',
+        async: false
+    }).done(function (){
+        //close loader
+        $('.dv-background').hide();
+    }).responseText;
+
+    $('#tbodyFares').empty();
+    $.each(JSON.parse(faresData),function(index,item){
+
+        var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
+        var dates = date.split("-");
+        var dateOrigin = dates[2];
+        var monthOrigin = dates[1];
+        var yeaOrigin = dates[0];
+        var checkDateDuplicate = dateOrigin+'/'+monthOrigin+'/'+yeaOrigin;
+
+        if(checkDateDuplicate == "10/10/2010"){
+            checkDateDuplicate = "----------"
+        }
+        var priceFares = item.price ;
+        var pricePromotion = item.promote.promotePrice;
+        var balance= parseInt(priceFares - pricePromotion);
+
+
+        $('#tbodyFares').append('<tr>' +
+            '<td><center>'+(item.travel.locationSourName==null?'':item.travel.locationSourName)+'</center></td>' +
+            '<td><center>'+(item.travel.locationDisName==null?'':item.travel.locationDisName)+'</center></td>' +
+            '<td><center>'+(item.price==null?'':parseFloat(item.price).toFixed(2))+'</center></td>' +
+            '<td><center>'+(item.travel.transport.transportName==null?'':item.travel.transport.transportName)+'</center></td>' +
+            '<td><center>'+(item.travel.transport.transportBusiness==null?'':item.travel.transport.transportBusiness)+'</center></td>' +
+            '<td><center>'+(item.promote.promotion.promotionName==null?'':item.promote.promotion.promotionName)+'</center></td>' +
+            '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
+            '<td><center>'+(item.promote.promotePrice==null?'':parseFloat(item.promote.promotePrice).toFixed(2))+'</center></td>' +
+            '<td><center>'+(balance==null?'':parseFloat(balance).toFixed(2))+'</center></td>' +
+            '</tr>');
+        //
+        // faresPrototype[item.id]=item;
+    });
+    $('#tableFares').DataTable({
+        "scrollY":"250px",
+        "bSort": false,
+        "language": {
+            "lengthMenu": "แสดง _MENU_ รายการ",
+            "zeroRecords": "ไม่พบข้อมูล",
+            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+            "infoEmpty": "ไม่พบเรคคอร์ด",
+            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+            "decimal":        "",
+            "emptyTable":     "ไม่มีข้อมูลในตาราง",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "loadingRecords": "โหลด...",
+            "processing":     "กำลังดำเนินการ...",
+            "search":         "ค้นหา:",
+            "paginate": {
+                "first":      "หน้าแรก",
+                "last":       "หน้าสุดท้าย",
+                "next":       "ถัดไป",
+                "previous":   "ก่อนหน้า"
+            },
+            "aria": {
+                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+            }
+        }
+    });
 }
 function destroyDataTableFares() {
     $('#tableFares').DataTable( {
