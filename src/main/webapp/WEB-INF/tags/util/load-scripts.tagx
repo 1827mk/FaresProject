@@ -73,6 +73,17 @@
     <script src="${date_util_js_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
     <script src="${validtae_field_util_js_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
 
+    <!--&lt;!&ndash;DataTable&ndash;&gt;-->
+    <!--<spring:url value="/resources/scripts/dataTable/media/js/jquery.dataTables.js" var="jQuerydataTables" />-->
+    <!--<spring:url value="/resources/scripts/dataTable/media/js/jquery.dataTables.min.js" var="jQuerydataTablesMin" />-->
+    <!--<spring:url value="/resources/scripts/dataTable/media/css/jquery.dataTables.css" var="jQuerydataTables_css_url" />-->
+    <!--<spring:url value="/resources/scripts/dataTable/media/css/jquery.dataTables.min.css" var="jQuerydataTablesMin_css_url" />-->
+    <!--<script src="${jQuerydataTables}" type="text/javascript">&lt;!&ndash;Not Empty &ndash;&gt;</script>-->
+    <!--<script src="${jQuerydataTablesMin}" type="text/javascript">&lt;!&ndash;Not Empty &ndash;&gt;</script>-->
+    <!--<link rel="stylesheet" type="text/css" href="${jQuerydataTables_css_url}" />-->
+    <!--<link rel="stylesheet" type="text/css" href="${jQuerydataTablesMin_css_url}" />-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+
     <spring:url value="/resources/scripts/jquery-1.11.1.min.js" var="jquery_js_url" />
     <spring:url value="/resources/scripts/jquery-ui.min.js" var="jquery_ui_js_url" />
     <spring:url value="/resources/scripts/jquery-ui-1.11.1.min.js" var="jqueryUI_js_url" />

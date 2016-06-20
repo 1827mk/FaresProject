@@ -137,7 +137,7 @@ function sourceAutoComplate() {
     });
     // end
     dataCheck = listdata;
-    console.log(dataCheck);
+    // console.log(dataCheck);
 }
 
 
@@ -150,7 +150,15 @@ function findAllFares(){
 //         async: false
 //     }).responseJSON;
 }
-
+function destroyDataTableFares() {
+    $('#tableFares').DataTable( {
+        paging: false
+    } );
+    $('#tableFares').DataTable( {
+        destroy: true,
+        searching: false
+    } );
+}
 // serchAll
 function searchAll(source,destination) {
     var textSource = source;
@@ -198,13 +206,41 @@ function searchAll(source,destination) {
             '<td><center>'+(item.price==null?'':parseFloat(item.price).toFixed(2))+'</center></td>' +
             '<td><center>'+(item.travel.transport.transportName==null?'':item.travel.transport.transportName)+'</center></td>' +
             '<td><center>'+(item.travel.transport.transportBusiness==null?'':item.travel.transport.transportBusiness)+'</center></td>' +
-            '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
             '<td><center>'+(item.promote.promotion.promotionName==null?'':item.promote.promotion.promotionName)+'</center></td>' +
+            '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
             '<td><center>'+(item.promote.promotePrice==null?'':parseFloat(item.promote.promotePrice).toFixed(2))+'</center></td>' +
             '<td><center>'+(balance==null?'':parseFloat(balance).toFixed(2))+'</center></td>' +
             '</tr>');
         //
         // faresPrototype[item.id]=item;
+    });
+    $('#tableFares').DataTable({
+        "bLengthChange" : false,
+        "bSort": false,
+        "language": {
+            "lengthMenu": "แสดง _MENU_ รายการ",
+            "zeroRecords": "ไม่พบข้อมูล",
+            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+            "infoEmpty": "ไม่พบเรคคอร์ด",
+            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+            "decimal":        "",
+            "emptyTable":     "ไม่มีข้อมูลในตาราง",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "loadingRecords": "โหลด...",
+            "processing":     "กำลังดำเนินการ...",
+            "search":         "ค้นหา:",
+            "paginate": {
+                "first":      "หน้าแรก",
+                "last":       "หน้าสุดท้าย",
+                "next":       "ถัดไป",
+                "previous":   "ก่อนหน้า"
+            },
+            "aria": {
+                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+            }
+        }
     });
 }
 // search Trian and Bus
@@ -262,6 +298,34 @@ function searchTransport(tranCode,source,destination) {
             '</tr>');
         //
         // faresPrototype[item.id]=item;
+    });
+    $('#tableFares').DataTable({
+        "bLengthChange" : false,
+        "bSort": false,
+        "language": {
+            "lengthMenu": "แสดง _MENU_ รายการ",
+            "zeroRecords": "ไม่พบข้อมูล",
+            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+            "infoEmpty": "ไม่พบเรคคอร์ด",
+            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+            "decimal":        "",
+            "emptyTable":     "ไม่มีข้อมูลในตาราง",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "loadingRecords": "โหลด...",
+            "processing":     "กำลังดำเนินการ...",
+            "search":         "ค้นหา:",
+            "paginate": {
+                "first":      "หน้าแรก",
+                "last":       "หน้าสุดท้าย",
+                "next":       "ถัดไป",
+                "previous":   "ก่อนหน้า"
+            },
+            "aria": {
+                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+            }
+        }
     });
 
 }
@@ -323,6 +387,34 @@ function searchFlightTransport(source,destination,trainCode,busCode) {
         //
         // faresPrototype[item.id]=item;
     });
+    $('#tableFares').DataTable({
+        "bLengthChange" : false,
+        "bSort": false,
+        "language": {
+            "lengthMenu": "แสดง _MENU_ รายการ",
+            "zeroRecords": "ไม่พบข้อมูล",
+            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+            "infoEmpty": "ไม่พบเรคคอร์ด",
+            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+            "decimal":        "",
+            "emptyTable":     "ไม่มีข้อมูลในตาราง",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "loadingRecords": "โหลด...",
+            "processing":     "กำลังดำเนินการ...",
+            "search":         "ค้นหา:",
+            "paginate": {
+                "first":      "หน้าแรก",
+                "last":       "หน้าสุดท้าย",
+                "next":       "ถัดไป",
+                "previous":   "ก่อนหน้า"
+            },
+            "aria": {
+                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+            }
+        }
+    });
 }
 
 
@@ -339,6 +431,7 @@ $('input').tooltip({
 });
 
 $('#btnTextAllOK').on('click',function () {
+    $("#tableFares").DataTable().destroy();
     var source ;
     var destination ;
 
@@ -379,6 +472,7 @@ $('#btnTextAllOK').on('click',function () {
     }
 });
 $('#btnFlightOk').on('click',function () {
+    $("#tableFares").DataTable().destroy();
     var source ;
     var destination ;
 
@@ -422,6 +516,7 @@ $('#btnFlightOk').on('click',function () {
     }
 });
 $('#btnTrainOk').on('click',function () {
+    $("#tableFares").DataTable().destroy();
     var source ;
     var destination ;
 
@@ -465,6 +560,7 @@ $('#btnTrainOk').on('click',function () {
 });
 
 $('#btnBusOk').on('click',function () {
+    $("#tableFares").DataTable().destroy();
     var source ;
     var destination ;
 
