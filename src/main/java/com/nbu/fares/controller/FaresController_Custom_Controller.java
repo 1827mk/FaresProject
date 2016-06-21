@@ -32,14 +32,24 @@ public class FaresController_Custom_Controller {
         public ResponseEntity<String> findAllFares(){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-    return restService.findAllFaresFromEngine();
+        try{
+            return restService.findAllFaresFromEngine();
+        }catch (Exception e){
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 
     @RequestMapping(value = "/findAllSource",method = RequestMethod.GET,headers = "Accept=application/json")
     public ResponseEntity<String> findAllSource(){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        return restService.findAllSourceFromEnging();
+        try{
+            return restService.findAllSourceFromEnging();
+        }catch (Exception e){
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 
     @RequestMapping(value = "/searchAll", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -50,7 +60,7 @@ public class FaresController_Custom_Controller {
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;
         try{
-            logger.error("searchAll =="+source+"=="+destination+"=="+"\n");
+//            logger.error("searchAll =="+source+"=="+destination+"=="+"\n");
             return   restService.searchAll(source,destination);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,7 +77,7 @@ public class FaresController_Custom_Controller {
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;
         try{
-            logger.error("searchPlane =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
+//            logger.error("searchPlane =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
             return   restService.searchTransport(source,destination,tranCode);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -85,7 +95,7 @@ public class FaresController_Custom_Controller {
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;
         try{
-            logger.error("searchPlane =="+source+"=="+destination+"=="+trainCode+"=="+busCode+"=="+"\n");
+//            logger.error("searchPlane =="+source+"=="+destination+"=="+trainCode+"=="+busCode+"=="+"\n");
             return   restService.searchFlightTransport(source,destination,trainCode,busCode);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
