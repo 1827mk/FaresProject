@@ -12,12 +12,15 @@ $(window).on('load resize', function() {
 
     if (screen.width >= 1080) {
         $("#colPictureSlide").removeClass("col-sm-12");
+        $("#colPictureSlide").removeClass("marginTopcolPictureSlideOver1080");
+        $("#colPictureSlide").addClass("marginTopcolPictureSlideOver980");
         $("#colPictureSlide").addClass("col-sm-9");
         $('#formHoerSlideShow').addClass('formHoerSlideShow');
     }
     else {
         $("#colPictureSlide").removeClass("col-sm-9");
         $("#colPictureSlide").addClass("col-sm-12");
+        $("#colPictureSlide").addClass("marginTopcolPictureSlideOver1080");
         $('#formHoerSlideShow').removeClass('formHoerSlideShow');
     }
     //

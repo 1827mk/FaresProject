@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="icon" href="/Fares/images/favicon.png">
     <meta charset="utf-8">
     <!-- TITLE -->
     <title>Fares</title>
@@ -16,6 +17,13 @@
         var _language = window.session.lang;
     </script>
     <style>
+        .marginTopcolPictureSlideOver1080{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .marginTopcolPictureSlideOver980{
+            margin-top: 15px;
+        }
 
         /*.well{*/
         /*!*margin-top: 0px;*!*/
@@ -170,7 +178,9 @@ and also iPads specifically.
         }
 
 
-
+        button{
+            width: 170px;
+        }
 
         /*//////////////////////////////////*/
         /* Slide Show */
@@ -228,6 +238,21 @@ and also iPads specifically.
         .jssora05l.jssora05ldn { background-position: -250px -40px; }
         .jssora05r.jssora05rdn { background-position: -310px -40px; }
         /*--------------*/
+        #bodyFares {
+            background-size: cover;
+            background-image: url("/Fares/HtmlTemplate/images/backgroud-body.jpg");
+        }
+        #headerfares{
+            background-color: grey;
+        }
+
+        .header-page__inner {
+            width: 1980px;
+            background-image: url("/Fares/HtmlTemplate/images/backgroud-body.jpg");
+        }
+        html body div#page-wrap header#header-page div#headerfares.header-page__inner div.container nav.navigation.awe-navigation ul.menu-list li.menu-item-has-children.current-menu-parent a{
+            color: #0a0a0a;
+        }
 
     </style>
 
@@ -256,7 +281,7 @@ and also iPads specifically.
     <link rel="stylesheet" type="text/css" href="/Fares/HtmlTemplate/css/demo.css">
 
     <!-- CSS COLOR -->
-    <link id="colorreplace" rel="stylesheet" type="text/css" href="/resources/HtmlTemplate/css/colors/blue.css">
+    <link rel="stylesheet" type="text/css" href="/Fares/HtmlTemplate/css/colors/blue.css">
 
     <!--DataTable-->
     <link rel="stylesheet" type="text/css" href="/Fares/scripts/dataTable/media/css/jquery.dataTables.css">
@@ -338,649 +363,530 @@ and also iPads specifically.
 
 <!-- PAGE WRAP -->
 <div id="page-wrap">
-<!-- PRELOADER -->
-<div class="preloader"></div>
-<!-- END / PRELOADER -->
+    <!-- PRELOADER -->
+    <div class="preloader"></div>
+    <!-- END / PRELOADER -->
 
-<!-- HEADER PAGE -->
-<header id="header-page">
-    <div class="header-page__inner">
-        <div class="container">
-            <!-- LOGO -->
-            <div class="logo">
-                <a href="#"><img src="/Fares/HtmlTemplate/images/logo.png" alt=""></a>
-            </div>
-            <!-- END / LOGO -->
-
-            <!-- NAVIGATION -->
-            <nav class="navigation awe-navigation" data-responsive="1200">
-                <ul class="menu-list">
-                    <li class="menu-item-has-children current-menu-parent">
-                        <a href="#">หน้าแรก</a>
-                        <ul class="sub-menu">
-                            <li class="current-menu-item"><a href="#">เกี่ยวกับ</a></li>
-                            <li><a href="#">ผู้จัดทำ</a></li>
-                            <li><a href="#">ติดต่อเรา</a></li>
-                        </ul>
-                    </li>
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="destinations-list.html">Destinations</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--<li><a href="destinations-list.html">List</a></li>-->
-                    <!--<li><a href="destinations-grid.html">Grid</a></li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="destinations-trip.html">Detail</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="destinations-trip.html">Trips in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-hotel.html">Hotels in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-attraction.html">Attraction in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-flight.html">Flights in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-train.html">Train in destination</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li><a href="destinations-list-dark.html">List (Dark)</a></li>-->
-                    <!--<li><a href="destinations-grid-dark.html">Grid (Dark)</a></li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="destinations-trip.html">Detail (Dark)</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="destinations-trip-dark.html">Trips in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-hotel-dark.html">Hotels in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-attraction-dark.html">Attraction in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-flight-dark.html">Flights in destination</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="destinations-train-dark.html">Train in destination</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="trip.html">Trips</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="trip.html">Trips</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="trip-detail.html">Trips Detail</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="trip-dark.html">Trips (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="trip-detail-dark.html">Trips Detail (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="hotel.html">Hotel</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="hotel.html">Hotel</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="hotel-detail.html">Hotel Detail</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="hotel-dark.html">Hotel (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="hotel-detail-dark.html">Hotel Detail (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="flight.html">Flight</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="flight.html">Flight</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="flight-detail.html">Flight Detail</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="flight-dark.html">Flight (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="flight-detail-dark.html">Flight Detail (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="train.html">Train</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="train.html">Train</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="train-detail.html">Train Detail</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="train-dark.html">Train (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="train-detail-dark.html">Train Detail (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="attraction.html">Attraction</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="attraction.html">Attraction</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="attraction-detail.html">Attraction Detail</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="attraction-dark.html">Attraction (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="attraction-detail-dark.html">Attraction Detail (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="#">Pages</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="blog.html">Blog</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="blog.html">Blog</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="single-post.html">Single Post</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="blog-dark.html">Blog (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="single-post-dark.html">Single Post (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="login.html">Log In</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="login.html">Log In</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="register.html">Register</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="login.html">Log In (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="register.html">Register (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="checkout-yourcart.html">Checkout</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="checkout-yourcart.html">Your cart</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="checkout-customer.html">Customer</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="checkout-complete.html">Complete</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="checkout-yourcart-dark.html">Your cart (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="checkout-customer-dark.html">Customer (Dark)</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="checkout-complete-dark.html">Complete (Dark)</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li><a href="shortcode.html">Shortcode</a></li>-->
-
-                    <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li class="menu-item-has-children">-->
-                    <!--<a href="contact.html">Contact</a>-->
-                    <!--<ul class="sub-menu">-->
-                    <!--&lt;!&ndash;<li><a href="contact.html">Light</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li><a href="contact-dark.html">Dark</a></li>&ndash;&gt;-->
-                    <!--</ul>-->
-                    <!--</li>-->
-                </ul>
-            </nav>
-            <!-- END / NAVIGATION -->
-
-            <!-- SEARCH BOX -->
-            <div class="search-box">
-                <span class="searchtoggle"><i class="awe-icon awe-icon-search"></i></span>
-                <form class="form-search">
-                    <div class="form-item">
-                        <input type="text" value="Search &amp; hit enter">
-                    </div>
-                </form>
-            </div>
-            <!-- END / SEARCH BOX -->
-
-
-            <!-- TOGGLE MENU RESPONSIVE -->
-            <a class="toggle-menu-responsive" href="#">
-                <div class="hamburger">
-                    <span class="item item-1"></span>
-                    <span class="item item-2"></span>
-                    <span class="item item-3"></span>
+    <!-- HEADER PAGE -->
+    <header id="header-page">
+        <div class="header-page__inner " id="headerfares">
+            <div class="container">
+                <!-- LOGO -->
+                <div class="logo">
+                    <a href="#"><img src="/Fares/HtmlTemplate/images/logo.png" alt=""></a>
                 </div>
-            </a>
-            <!-- END / TOGGLE MENU RESPONSIVE -->
+                <!-- END / LOGO -->
 
+                <!-- NAVIGATION -->
+                <nav class="navigation awe-navigation" data-responsive="1200">
+                    <ul class="menu-list">
+                        <li class="menu-item-has-children current-menu-parent">
+                            <a href="#">หน้าแรก</a>
+                            <ul class="sub-menu">
+                                <li class="current-menu-item"><a href="#">เกี่ยวกับ</a></li>
+                                <li><a href="#">ผู้จัดทำ</a></li>
+                                <li><a href="#">ติดต่อเรา</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- END / NAVIGATION -->
+
+                <!-- SEARCH BOX -->
+                <div class="search-box">
+                    <span class="searchtoggle"><i class="awe-icon awe-icon-search"></i></span>
+                    <form class="form-search">
+                        <div class="form-item">
+                            <input type="text" value="Search &amp; hit enter">
+                        </div>
+                    </form>
+                </div>
+                <!-- END / SEARCH BOX -->
+
+
+                <!-- TOGGLE MENU RESPONSIVE -->
+                <a class="toggle-menu-responsive" href="#">
+                    <div class="hamburger">
+                        <span class="item item-1"></span>
+                        <span class="item item-2"></span>
+                        <span class="item item-3"></span>
+                    </div>
+                </a>
+                <!-- END / TOGGLE MENU RESPONSIVE -->
+
+            </div>
         </div>
-    </div>
-</header>
-<!-- END / HEADER PAGE -->
+    </header>
+    <!-- END / HEADER PAGE -->
 
-<!-- HERO SECTION -->
-<section class="hero-section">
-    <div id="slider-revolution">
-        <ul>
-            <li data-slotamount="7" data-masterspeed="500" data-title="Slide title 1">
-                <img src="/Fares/HtmlTemplate/images/bg/1.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div id="slider-revolution">
+            <ul>
+                <li data-slotamount="7" data-masterspeed="500" data-title="Slide title 1">
+                    <img src="/Fares/HtmlTemplate/images/bg/1.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
 
-                <div class="tp-caption sfb fadeout slider-caption-sub slider-caption-sub-1" data-x="500" data-y="230" data-speed="700" data-start="1500" data-easing="easeOutBack">
-                    คำนวณค่าใช้จ่ายก่อนออกเดินทาง
-                </div>
-
-                <div class="tp-caption sfb fadeout slider-caption slider-caption-1" data-x="center" data-y="280" data-speed="700" data-easing="easeOutBack"  data-start="2000">สถานที่ท่องเที่ยวภายในประเทศ</div>
-
-                <a href="#" class="tp-caption sfb fadeout awe-btn awe-btn-style3 awe-btn-slider" data-x="center" data-y="380" data-easing="easeOutBack" data-speed="700" data-start="2200">Book now</a>
-            </li>
-
-            <li data-slotamount="7" data-masterspeed="500" data-title="Slide title 2">
-                <img src="/Fares/HtmlTemplate/images/bg/2.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
-
-                <div class="tp-caption  sft fadeout slider-caption-sub slider-caption-sub-2" data-x="center" data-y="220" data-speed="700" data-start="1500" data-easing="easeOutBack">
-                    ค้นหาสถานที่ของคุณ
-                </div>
-
-                <div class="tp-caption sft fadeout slider-caption slider-caption-2" data-x="center" data-y="260" data-speed="700" data-easing="easeOutBack"  data-start="2000">
-                    เดินทางไปกับเรา
-                </div>
-
-                <a href="#" class="tp-caption sft fadeout awe-btn awe-btn-style3 awe-btn-slider" data-x="center" data-y="370" data-easing="easeOutBack" data-speed="700" data-start="2200">Book now</a>
-            </li>
-
-            <li data-slotamount="7" data-masterspeed="500" data-title="Slide title 3">
-                <img src="/Fares/HtmlTemplate/images/bg/3.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
-
-                <div class="tp-caption lfl fadeout slider-caption slider-caption-3" data-x="center" data-y="260" data-speed="700" data-easing="easeOutBack"  data-start="1500">
-                    ระบบคำนวณราคาอัตราค่าโดยสาร
-                </div>
-
-                <div href="#" class="tp-caption lfr fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="365" data-easing="easeOutBack" data-speed="700" data-start="2000">Take you to every corner of the Thailand.</div>
-            </li>
-
-        </ul>
-    </div>
-</section>
-<!-- END / HERO SECTION -->
-
-<!-- SEARCH TABS -->
-<div>
-    <div class="container" >
-        <div class="row">
-            <div class="col-sm-3" id="check768">
-                <div class="form-horizontal">
-                    <div class="awe-search-tabs tabs col-sm-3"  style="width: 31rem;">
-                        <ul>
-                            <li>
-                                <a href="#awe-search-tabs-1" >
-                                    <i class="awe-icon awe-icon-list"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#awe-search-tabs-2">
-                                    <i class="awe-icon awe-icon-plane"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#awe-search-tabs-3">
-                                    <i class="awe-icon awe-icon-train"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#awe-search-tabs-4">
-                                    <i class="awe-icon awe-icon-bus"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <!--Tab 1-->
-                        <div class="awe-search-tabs__content tabs__content"  style="width: 31rem; hight:300px;"  autocomplete="on">
-                            <div id="awe-search-tabs-1" class="search-flight">
-                                <h5>ค้นหาราคาค่าโดยสาร.</h5>
-                                <div class="form-elements">
-                                    <label>สถานที่ต้นทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1" ></i>
-                                        <input type="text" id="textAllFaresSource" placeholder="กรุงเทพ, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label>สถานที่ปลายทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textAllFaresDestination"  placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label></label>
-                                    <div class="col-sm-offset-2">
-                                        <button id="btnTextAllOK" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Tab 2-->
-                            <div id="awe-search-tabs-2" class="search-flight">
-                                <h5>ค้นหา(เครื่องบิน.)</h5>
-                                <div class="form-elements">
-                                    <label>สถานที่ต้นทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textFlightSource"  placeholder="กรุงเทพ, ประเทศไทย" data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label>สถานที่ปลายทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textFlightDestination"  placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label></label>
-                                    <div class="col-sm-offset-2">
-                                        <button id="btnFlightOk" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Tab 3-->
-                            <div id="awe-search-tabs-3" class="search-flight">
-                                <h5>ค้นหา(รถไฟ.)</h5>
-                                <div class="form-elements">
-                                    <label>สถานที่ต้นทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textTrainSource" placeholder="กรุงเทพ, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label>สถานที่ปลายทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textTrainDestination" placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label></label>
-                                    <div class="col-sm-offset-2">
-                                        <button id="btnTrainOk" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Tab 4-->
-                            <div id="awe-search-tabs-4" class="search-flight">
-                                <h5>ค้นหา(บขส.)</h5>
-                                <div class="form-elements">
-                                    <label>สถานที่ต้นทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textBusSource" placeholder="กรุงเทพ, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label>สถานที่ปลายทาง</label>
-                                    <div class="form-item">
-                                        <i class="awe-icon awe-icon-marker-1"></i>
-                                        <input type="text" id="textBusDestination" placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
-                                    </div>
-                                </div>
-                                <div class="form-elements">
-                                    <label></label>
-                                    <div class="col-sm-offset-2">
-                                        <button id="btnBusOk" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="tp-caption sfb fadeout slider-caption-sub slider-caption-sub-1" data-x="500" data-y="230" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                        คำนวณค่าใช้จ่ายก่อนออกเดินทาง
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-9" id="colPictureSlide">
-                <div class="form-horizontal" id="formHoerSlideShow">
-                    <!--<div class="container"  style="width: 630px">-->
-                    <!--<div class="panel panel-default" id="panelSlideShow" >-->
-                    <!--<div class="panel-body" >-->
-                    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
-                        <!-- Loading Screen -->
-                        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-                            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                            <div style="position:absolute;display:block;background:url('/Fares/SlideShow/img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-                        </div>
-                        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/002.jpg" />
-                                <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">mobile ready, touch swipe</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/007.jpg" />
-                                <div data-u="caption" data-t="1" data-3d="1" style="position: absolute; top: -50px; left: 125px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">time lined layer animation</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/003.jpg" />
-                                <div data-u="caption" data-t="2" style="position: absolute; top: 30px; left: -380px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">finger catchable right to left</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/004.jpg" />
-                                <div data-u="caption" data-t="3" style="position: absolute; top: 30px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">responsive, scale smoothly</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/005.jpg" />
-                                <div data-u="caption" data-t="4" style="position: absolute; top: 30px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.6); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">image, text, and custom layers</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/006.jpg" />
-                                <div data-u="caption" data-t="5" style="position: absolute; top: 30px; left: 600px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">tons of transition type</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/009.jpg" />
-                                <div data-u="caption" data-t="6" style="position: absolute; top: 30px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">visual slider maker</div>
-                            </div>
-                            <div data-b="0" data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/008.jpg" />
-                                <div data-u="caption" data-t="7" style="position: absolute; top: -50px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">play in and play out</div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/011.jpg" />
-                                <div data-u="caption" data-t="8" data-3d="1" style="position: absolute; top: 25px; left: 150px; width: 250px; height: 250px; background-color: rgba(40,177,255,0.6); overflow: hidden;">
-                                    <div data-u="caption" data-t="9" style="position: absolute; top: 100px; left: 25px; width: 200px; height: 50px; font-size: 24px; line-height: 50px;">A Child Layer</div>
-                                </div>
-                            </div>
-                            <div data-p="112.50" style="display: none;">
-                                <img data-u="image" src="/Fares/SlideShow/img/010.jpg" />
-                                <div data-u="caption" data-t="10" data-3d="1" style="position: absolute; top: 25px; left: 100px; width: 250px; height: 250px; background-color: rgba(40,177,255,0.6);">
-                                    <div style="margin: 15px; font-size: 20px;">
-                                        <p>This is full customized content layer.<br />
-                                        </p>
-                                        <p>
-                                            Everything is allowed
 
-                                        </p>
-                                        You can put
+                    <div class="tp-caption sfb fadeout slider-caption slider-caption-1" data-x="center" data-y="280" data-speed="700" data-easing="easeOutBack"  data-start="2000">สถานที่ท่องเที่ยวภายในประเทศ</div>
 
-                                        <a href="http://wwww.jssor.com">
-                                            a link
-                                        </a> or an image
+                    <a href="#" class="tp-caption sfb fadeout awe-btn awe-btn-style3 awe-btn-slider" data-x="center" data-y="380" data-easing="easeOutBack" data-speed="700" data-start="2200">Book now</a>
+                </li>
 
-                                        <img src="/Fares/SlideShow/img/icon_chrome.png" /> here.
+                <li data-slotamount="7" data-masterspeed="500" data-title="Slide title 2">
+                    <img src="/Fares/HtmlTemplate/images/bg/2.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
 
-                                    </div>
-                                </div>
-                            </div>
-                            <a data-u="ad" href="http://www.jssor.com" style="display:none">Bootstrap Slider</a>
-
-                        </div>
-                        <!-- Bullet Navigator -->
-                        <div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
-                            <div data-u="prototype" style="width:12px;height:12px;"></div>
-                        </div>
-                        <!-- Arrow Navigator -->
-                        <span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
-                        <span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
+                    <div class="tp-caption  sft fadeout slider-caption-sub slider-caption-sub-2" data-x="center" data-y="220" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                        ค้นหาสถานที่ของคุณ
                     </div>
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                </div>
-            </div>
-            <div class="col-sm-12 " >
-                <div class="form-horizontal">
-                    <div class="well" id="wellCustom" >
-                        <form class="form-horizontal">
-                            <div id="tableHeader">
-                                <h5 id="h5Table">ตารางราคา</h5>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-responsive " id="tableFares">
-                                    <thead >
-                                    <th>สถานที่ต้นทาง</th>
-                                    <th>สถานที่ปลายทาง</th>
-                                    <th>ราคา (บาท)</th>
-                                    <th>พาหนะเดินทาง</th>
-                                    <th>บริษัท</th>
-                                    <th>โปรโมชั่น</th>
-                                    <th>วันที่</th>
-                                    <th>ส่วนลด (บาท)</th>
-                                    <th>ยอดสุทธิ (บาท)</th>
-                                    </thead>
-                                    <tbody id="tbodyFares" class="table table-responsive" >
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </form>
+                    <div class="tp-caption sft fadeout slider-caption slider-caption-2" data-x="center" data-y="260" data-speed="700" data-easing="easeOutBack"  data-start="2000">
+                        เดินทางไปกับเรา
                     </div>
-                </div>
-            </div>
-            <!--row-->
+
+                    <a href="#" class="tp-caption sft fadeout awe-btn awe-btn-style3 awe-btn-slider" data-x="center" data-y="370" data-easing="easeOutBack" data-speed="700" data-start="2200">Book now</a>
+                </li>
+
+                <li data-slotamount="7" data-masterspeed="500" data-title="Slide title 3">
+                    <img src="/Fares/HtmlTemplate/images/bg/3.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+
+                    <div class="tp-caption lfl fadeout slider-caption slider-caption-3" data-x="center" data-y="260" data-speed="700" data-easing="easeOutBack"  data-start="1500">
+                        ระบบคำนวณราคาอัตราค่าโดยสาร
+                    </div>
+
+                    <div href="#" class="tp-caption lfr fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="365" data-easing="easeOutBack" data-speed="700" data-start="2000">Take you to every corner of the Thailand.</div>
+                </li>
+
+            </ul>
         </div>
-    </div>
     </section>
-    <!-- END / SEARCH TABS -->
+    <!-- END / HERO SECTION -->
+
+    <!-- SEARCH TABS -->
+    <div id="bodyFares">
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-3" id="check768">
+                    <div class="form-horizontal">
+                        <div class="awe-search-tabs tabs col-sm-3"  style="width: 31rem;">
+                            <ul>
+                                <li>
+                                    <a href="#awe-search-tabs-1" >
+                                        <i class="awe-icon awe-icon-list"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#awe-search-tabs-2">
+                                        <i class="awe-icon awe-icon-plane"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#awe-search-tabs-3">
+                                        <i class="awe-icon awe-icon-train"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#awe-search-tabs-4">
+                                        <i class="awe-icon awe-icon-bus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--Tab 1-->
+                            <div class="awe-search-tabs__content tabs__content"  style="width: 31rem; hight:300px;"  autocomplete="on">
+                                <div id="awe-search-tabs-1" class="search-flight">
+                                    <h5>ค้นหาราคาค่าโดยสาร.</h5>
+                                    <div class="form-elements">
+                                        <label>สถานที่ต้นทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1" ></i>
+                                            <input type="text" id="textAllFaresSource" placeholder="กรุงเทพ, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label>สถานที่ปลายทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textAllFaresDestination"  placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label></label>
+                                        <div class="col-sm-offset-0">
+                                            <center><button id="btnTextAllOK" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button></center>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Tab 2-->
+                                <div id="awe-search-tabs-2" class="search-flight">
+                                    <h5>ค้นหา(เครื่องบิน.)</h5>
+                                    <div class="form-elements">
+                                        <label>สถานที่ต้นทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textFlightSource"  placeholder="กรุงเทพ, ประเทศไทย" data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label>สถานที่ปลายทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textFlightDestination"  placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label></label>
+                                        <div class="col-sm-offset-0">
+                                            <center> <button id="btnFlightOk" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button></center>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Tab 3-->
+                                <div id="awe-search-tabs-3" class="search-flight">
+                                    <h5>ค้นหา(รถไฟ.)</h5>
+                                    <div class="form-elements">
+                                        <label>สถานที่ต้นทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textTrainSource" placeholder="กรุงเทพ, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label>สถานที่ปลายทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textTrainDestination" placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label></label>
+                                        <div class="col-sm-offset-0">
+                                            <center><button id="btnTrainOk" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button></center>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Tab 4-->
+                                <div id="awe-search-tabs-4" class="search-flight">
+                                    <h5>ค้นหา(บขส.)</h5>
+                                    <div class="form-elements">
+                                        <label>สถานที่ต้นทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textBusSource" placeholder="กรุงเทพ, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label>สถานที่ปลายทาง</label>
+                                        <div class="form-item">
+                                            <i class="awe-icon awe-icon-marker-1"></i>
+                                            <input type="text" id="textBusDestination" placeholder="เชียงใหม่, ประเทศไทย"  data-toggle="tooltip" title="กรุณาระบุ"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-elements">
+                                        <label></label>
+                                        <div class="col-sm-offset-0">
+                                            <center><button id="btnBusOk" class="btn btn-sm-9 btn-primary"  data-dismiss="modal" >OK</button></center>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9" id="colPictureSlide">
+                    <div class="form-horizontal" id="formHoerSlideShow">
+                        <!--<div class="container"  style="width: 630px">-->
+                        <!--<div class="panel panel-default" id="panelSlideShow" >-->
+                        <!--<div class="panel-body" >-->
+                        <div id="jssor_1" style="border-color: #0a0a0a;border: 3px;position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+                            <!-- Loading Screen -->
+                            <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                                <div style="position:absolute;display:block;background:url('/Fares/SlideShow/img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+                            </div>
+                            <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/002.jpg" />
+                                    <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">เดินทางไปกับเรา..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/007.jpg" />
+                                    <div data-u="caption" data-t="1" data-3d="1" style="position: absolute; top: -50px; left: 125px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">เวลาแห่งความสุข.. และธรรมชาติ..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/003.jpg" />
+                                    <div data-u="caption" data-t="2" style="position: absolute; top: 30px; left: -380px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">อากาศที่เย็นสบาย..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/004.jpg" />
+                                    <div data-u="caption" data-t="3" style="position: absolute; top: 30px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">พาครอบครับไปพักผ่อนในวันหยุด..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/005.jpg" />
+                                    <div data-u="caption" data-t="4" style="position: absolute; top: 30px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.6); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">เลือกใช้บริการเว็บของเรา..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/006.jpg" />
+                                    <div data-u="caption" data-t="5" style="position: absolute; top: 30px; left: 600px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">ค้นหาสถานที่ท่องเที่ยวและตรวจสอบราคา..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/009.jpg" />
+                                    <div data-u="caption" data-t="6" style="position: absolute; top: 30px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">พร้อมเดินทางไปกับเราไหม..</div>
+                                </div>
+                                <div data-b="0" data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/008.jpg" />
+                                    <div data-u="caption" data-t="7" style="position: absolute; top: -50px; left: 30px; width: 300px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">พักผ่อนในเทศกาลต่างๆ เลือกสถานที่ของคุณ..</div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/011.jpg" />
+                                    <div data-u="caption" data-t="8" data-3d="1" style="position: absolute; top: 25px; left: 150px; width: 250px; height: 250px; background-color: rgba(40,177,255,0.6); overflow: hidden;">
+                                        <div data-u="caption" data-t="9" style="position: absolute; top: 100px; left: 25px; width: 200px; height: 50px; font-size: 24px; line-height: 50px;">ไปเที่ยวกับเราสิ แล้วความสุขจะเป็นของคุณ..</div>
+                                    </div>
+                                </div>
+                                <div data-p="112.50" style="display: none;">
+                                    <img data-u="image" src="/Fares/SlideShow/img/010.jpg" />
+                                    <div data-u="caption" data-t="10" data-3d="1" style="position: absolute; top: 25px; left: 100px; width: 250px; height: 250px; background-color: rgba(40,177,255,0.6);">
+                                        <div style="margin: 15px; font-size: 20px;">
+                                            <p>ขอบคุณที่ใช้บริการของเรา..<br />
+                                            </p>
+                                            <p>
+                                                ระบบค้นหาและคำนวณราคาอัตราค่าโดยสาร
+                                            </p>
+                                            ขอบคุณ..
+                                            <a href="#">
+                                                a link
+                                            </a> เดินทางไปพร้อมเราสิ..
+
+                                            <img src="/Fares/SlideShow/img/icon_chrome.png" /> here.
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-u="ad" href="http://www.jssor.com" style="display:none">Bootstrap Slider</a>
+
+                            </div>
+                            <!-- Bullet Navigator -->
+                            <div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
+                                <div data-u="prototype" style="width:12px;height:12px;"></div>
+                            </div>
+                            <!-- Arrow Navigator -->
+                            <span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
+                            <span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
+                        </div>
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="col-sm-12 " >
+                    <div class="form-horizontal">
+                        <div class="well" id="wellCustom" >
+                            <form class="form-horizontal">
+                                <div id="tableHeader">
+                                    <h5 id="h5Table">ตารางราคา</h5>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-responsive " id="tableFares">
+                                        <thead >
+                                        <th>สถานที่ต้นทาง</th>
+                                        <th>สถานที่ปลายทาง</th>
+                                        <th>ราคา (บาท)</th>
+                                        <th>พาหนะเดินทาง</th>
+                                        <th>บริษัท</th>
+                                        <th>โปรโมชั่น</th>
+                                        <th>วันที่</th>
+                                        <th>ส่วนลด (บาท)</th>
+                                        <th>ยอดสุทธิ (บาท)</th>
+                                        </thead>
+                                        <tbody id="tbodyFares" class="table table-responsive" >
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--row-->
+            </div>
+        </div>
+        </section>
+        <!-- END / SEARCH TABS -->
 
 
-    <script>
-        jssor_1_slider_init();
+        <script>
+            jssor_1_slider_init();
+        </script>
+
+        <section class="sale-flights-section-demo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FOOTER PAGE -->
+        <footer id="footer-page">
+            <div class="container">
+                <div class="row">
+                    <!-- WIDGET -->
+                    <div class="col-md-3">
+                        <div class="widget widget_contact_info">
+                            <div class="widget_background">
+                                <div class="widget_background__half" style="height: 300px;">
+                                    <div class="bg"></div>
+                                </div>
+                                <div class="widget_background__half" style="height: 300px;">
+                                    <div class="bg"></div>
+                                </div>
+                            </div>
+                            <div class="logo">
+                                <center><img src="/Fares/HtmlTemplate/images/logo.png" alt=""></center>
+                            </div>
+                            <div class="widget_content">
+                                <p style="margin-top: -20px;">Bangkok, Thailand. Thailand</p>
+                                <a href="#">webmaster@faresDev.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+
+                    <!-- WIDGET -->
+                    <div class="col-md-2">
+                        <div class="widget widget_about_us">
+                            <h3>About Us</h3>
+                            <div class="widget_content">
+                                <p>This project is a Web service for calculating fares designed to calculate the price of a plane, train, bus fares and to learn about Web services, Rest full by Spring MVC.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+
+                    <!-- WIDGET -->
+                    <div class="col-md-2">
+                        <div class="widget widget_categories">
+                            <h3>Categiries</h3>
+                            <ul>
+                                <li><a href="#">Plane</a></li>
+                                <li><a href="#">Train</a></li>
+                                <li><a href="#">Bus</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END / WIDGET -->
+
+                </div>
+                <div class="copyright">
+                    <p>©2016 FARES™ All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+        <!-- END / FOOTER PAGE -->
+    </div>
+    <!-- END / PAGE WRAP -->
+
+
+    <!-- LOAD JQUERY -->
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery.owl.carousel.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/theia-sticky-sidebar.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery.magnific-popup.min.js"></script>
+    <script type='text/javascript' src="/Fares/HtmlTemplate/js/lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/js/scripts.js"></script>
+    <script src="/Fares/scripts/dataTable/media/js/jquery.dataTables.js"></script>
+    <script src="/Fares/scripts/dataTable/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Fares/scripts/faresJs/showFares.js"></script>
+
+    <!-- REVOLUTION DEMO -->
+    <script type="text/javascript" src="/Fares/HtmlTemplate/revslider-demo/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="/Fares/HtmlTemplate/revslider-demo/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript">
+        if($('#slider-revolution').length) {
+            $('#slider-revolution').show().revolution({
+                ottedOverlay:"none",
+                delay:10000,
+                startwidth:1600,
+                startheight:650,
+                hideThumbs:200,
+
+                thumbWidth:100,
+                thumbHeight:50,
+                thumbAmount:5,
+
+
+                simplifyAll:"off",
+
+                navigationType:"none",
+                navigationArrows:"solo",
+                navigationStyle:"preview4",
+
+                touchenabled:"on",
+                onHoverStop:"on",
+                nextSlideOnWindowFocus:"off",
+
+                swipe_threshold: 0.7,
+                swipe_min_touches: 1,
+                drag_block_vertical: false,
+
+                parallax:"mouse",
+                parallaxBgFreeze:"on",
+                parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
+
+
+                keyboardNavigation:"off",
+
+                navigationHAlign:"center",
+                navigationVAlign:"bottom",
+                navigationHOffset:0,
+                navigationVOffset:20,
+
+                soloArrowLeftHalign:"left",
+                soloArrowLeftValign:"center",
+                soloArrowLeftHOffset:20,
+                soloArrowLeftVOffset:0,
+
+                soloArrowRightHalign:"right",
+                soloArrowRightValign:"center",
+                soloArrowRightHOffset:20,
+                soloArrowRightVOffset:0,
+
+                shadow:0,
+                fullWidth:"on",
+                fullScreen:"off",
+
+                spinner:"spinner2",
+
+                stopLoop:"off",
+                stopAfterLoops:-1,
+                stopAtSlide:-1,
+
+                shuffle:"off",
+
+                autoHeight:"off",
+                forceFullWidth:"off",
+
+
+
+                hideThumbsOnMobile:"off",
+                hideNavDelayOnMobile:1500,
+                hideBulletsOnMobile:"off",
+                hideArrowsOnMobile:"off",
+                hideThumbsUnderResolution:0,
+
+                hideSliderAtLimit:0,
+                hideCaptionAtLimit:0,
+                hideAllCaptionAtLilmit:0,
+                startWithSlide:0
+            });
+        }
     </script>
-
-    <section class="sale-flights-section-demo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- FOOTER PAGE -->
-    <footer id="footer-page">
-        <div class="container">
-            <div class="row">
-                <!-- WIDGET -->
-                <div class="col-md-3">
-                    <div class="widget widget_contact_info">
-                        <div class="widget_background">
-                            <div class="widget_background__half" style="height: 300px;">
-                                <div class="bg"></div>
-                            </div>
-                            <div class="widget_background__half" style="height: 300px;">
-                                <div class="bg"></div>
-                            </div>
-                        </div>
-                        <div class="logo">
-                            <center><img src="/Fares/HtmlTemplate/images/logo.png" alt=""></center>
-                        </div>
-                        <div class="widget_content">
-                            <p style="margin-top: -20px;">Bangkok, Thailand. Thailand</p>
-                            <a href="#">webmaster@faresDev.com</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- END / WIDGET -->
-
-                <!-- WIDGET -->
-                <div class="col-md-2">
-                    <div class="widget widget_about_us">
-                        <h3>About Us</h3>
-                        <div class="widget_content">
-                            <p>This project is a Web service for calculating fares designed to calculate the price of a plane, train, bus fares and to learn about Web services, Rest full by Spring MVC.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- END / WIDGET -->
-
-                <!-- WIDGET -->
-                <div class="col-md-2">
-                    <div class="widget widget_categories">
-                        <h3>Categiries</h3>
-                        <ul>
-                            <li><a href="#">Plane</a></li>
-                            <li><a href="#">Train</a></li>
-                            <li><a href="#">Bus</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- END / WIDGET -->
-
-            </div>
-            <div class="copyright">
-                <p>©2016 FARES™ All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-    <!-- END / FOOTER PAGE -->
-</div>
-<!-- END / PAGE WRAP -->
-
-
-<!-- LOAD JQUERY -->
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery.parallax-1.1.3.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery.owl.carousel.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/theia-sticky-sidebar.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery.magnific-popup.min.js"></script>
-<script type='text/javascript' src="/Fares/HtmlTemplate/js/lib/jquery-ui.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/js/scripts.js"></script>
-<script src="/Fares/scripts/dataTable/media/js/jquery.dataTables.js"></script>
-<script src="/Fares/scripts/dataTable/media/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/Fares/scripts/faresJs/showFares.js"></script>
-
-<!-- REVOLUTION DEMO -->
-<script type="text/javascript" src="/Fares/HtmlTemplate/revslider-demo/js/jquery.themepunch.revolution.min.js"></script>
-<script type="text/javascript" src="/Fares/HtmlTemplate/revslider-demo/js/jquery.themepunch.tools.min.js"></script>
-<script type="text/javascript">
-    if($('#slider-revolution').length) {
-        $('#slider-revolution').show().revolution({
-            ottedOverlay:"none",
-            delay:10000,
-            startwidth:1600,
-            startheight:650,
-            hideThumbs:200,
-
-            thumbWidth:100,
-            thumbHeight:50,
-            thumbAmount:5,
-
-
-            simplifyAll:"off",
-
-            navigationType:"none",
-            navigationArrows:"solo",
-            navigationStyle:"preview4",
-
-            touchenabled:"on",
-            onHoverStop:"on",
-            nextSlideOnWindowFocus:"off",
-
-            swipe_threshold: 0.7,
-            swipe_min_touches: 1,
-            drag_block_vertical: false,
-
-            parallax:"mouse",
-            parallaxBgFreeze:"on",
-            parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
-
-
-            keyboardNavigation:"off",
-
-            navigationHAlign:"center",
-            navigationVAlign:"bottom",
-            navigationHOffset:0,
-            navigationVOffset:20,
-
-            soloArrowLeftHalign:"left",
-            soloArrowLeftValign:"center",
-            soloArrowLeftHOffset:20,
-            soloArrowLeftVOffset:0,
-
-            soloArrowRightHalign:"right",
-            soloArrowRightValign:"center",
-            soloArrowRightHOffset:20,
-            soloArrowRightVOffset:0,
-
-            shadow:0,
-            fullWidth:"on",
-            fullScreen:"off",
-
-            spinner:"spinner2",
-
-            stopLoop:"off",
-            stopAfterLoops:-1,
-            stopAtSlide:-1,
-
-            shuffle:"off",
-
-            autoHeight:"off",
-            forceFullWidth:"off",
-
-
-
-            hideThumbsOnMobile:"off",
-            hideNavDelayOnMobile:1500,
-            hideBulletsOnMobile:"off",
-            hideArrowsOnMobile:"off",
-            hideThumbsUnderResolution:0,
-
-            hideSliderAtLimit:0,
-            hideCaptionAtLimit:0,
-            hideAllCaptionAtLilmit:0,
-            startWithSlide:0
-        });
-    }
-</script>
 </div>
 </body>
 </html>
