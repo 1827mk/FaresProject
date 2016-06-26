@@ -1,6 +1,7 @@
 package com.nbu.fares.service;
 
 import com.google.gson.*;
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
@@ -20,7 +21,7 @@ import java.util.Properties;
 
 public abstract class AbstractFaresEngine {
     protected static Logger LOGGER = LoggerFactory.getLogger(AbstractFaresEngine.class);
-    protected String HRMSServer = "localhost:8016/epropREST/rest";
+    protected String HRMSServer = "localhost:1516/FaresEngine/";
     protected static Properties connectProperties = null;
 
     protected String webServicesString = "";
@@ -76,16 +77,21 @@ public abstract class AbstractFaresEngine {
     }
 
     public String getResultString() {
-        LOGGER.debug("request :{}",getWebServicesString());
+//        LOGGER.debug("request :{}",getWebServicesString());
         resultString  = restTemplate.getForObject(getWebServicesString(), String.class);
         return resultString;
     }
 
     public ResponseEntity<String> getResultStringByTypeHttpMethodAndBodyContent(String json, HttpMethod httpMethod, String url, RestTemplate restTemplate) {
-        LOGGER.debug("url :{}", url);
+//        LOGGER.debug("url :{}", url);
+        String plainCreds = "fares:fares";
+        byte[] plainCredsBytes = plainCreds.getBytes();
+        byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
+        String base64Creds = new String(base64CredsBytes);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("Content-Type", "application/json; charset=utf-8");
+        headers.add("Authorization", "Basic " + base64Creds);
         HttpEntity<String> entity = new HttpEntity<String>(json, headers);
         if(httpMethod==null){
             httpMethod = HttpMethod.GET;
@@ -95,7 +101,7 @@ public abstract class AbstractFaresEngine {
     }
 
     public ResponseEntity<String> upload(String json, HttpMethod httpMethod, LinkedMultiValueMap<String, Object> param) {
-        LOGGER.debug("request :{}", getWebServicesString());
+//        LOGGER.debug("request :{}", getWebServicesString());
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
