@@ -154,6 +154,7 @@ function sourceAutoComplate() {
 
 
 function findAllFares(){
+    $("#tableFares").DataTable().destroy();
     var checkStatus = "online";
 
     var faresData = $.ajax({
@@ -213,6 +214,13 @@ function findAllFares(){
             // faresPrototype[item.id]=item;
         });
         $('#tableFares').DataTable({
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
+                // "sSwfPath": "https://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+                // "aButtons": [ 'copy', 'csv','pdf', 'print']
+                "aButtons": [ 'copy', 'csv', 'print']
+            },
             "scrollY":"200px",
             "bLengthChange" : false,
             "bSort": false,
