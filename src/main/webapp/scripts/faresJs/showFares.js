@@ -152,7 +152,6 @@ function sourceAutoComplate() {
 
 }
 
-
 function findAllFares(){
     $("#tableFares").DataTable().destroy();
     var checkStatus = "online";
@@ -219,7 +218,17 @@ function findAllFares(){
                 "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
                 // "sSwfPath": "https://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
                 // "aButtons": [ 'copy', 'csv','pdf', 'print']
-                "aButtons": [ 'copy', 'csv', 'print']
+                // "aButtons": [ 'copy', 'csv', 'print']
+
+                "aButtons": [
+                    'copy', 'csv','pdf', 'print' ,
+                    {
+                        "sExtends": "xls",
+                        "sButtonText": "xls.",
+                        "sFileName": "*.xls"
+                    },
+
+                ]
             },
             "scrollY":"200px",
             "bLengthChange" : false,
