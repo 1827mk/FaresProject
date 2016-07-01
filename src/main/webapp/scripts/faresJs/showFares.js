@@ -3,9 +3,11 @@
  */
 var dateCurrentClient;
 $(document).ready(function () {
+    // $('#loading').hide();
     findAllFares();
-    sourceAutoComplate();
     clearAll();
+    sourceAutoComplate();
+
 });
 // Responseive
 $(window).on('load resize', function() {
@@ -76,13 +78,13 @@ function clearAll() {
     $("#textBusSource").val("");
 
     $("#textBusDestination").val("");
-    
+    $('#loading').hide();
 }
 var dataCheck =[];
 var listdata =[];
 var discription = []
 function sourceAutoComplate() {
-    
+    $('#loading').show();
     var checkStatus = "online" ;
     var data = $.ajax({
         type: "GET", headers: { Accept: 'application/json' },
@@ -92,20 +94,29 @@ function sourceAutoComplate() {
         complete:function(xhr){
             if(xhr.readyState==4){
                 if(xhr.status==500){
+                    swal({
+                        title: "แจ้งเตือน",
+                        text: "เซิฟเวอร์ปิดให้บริการ กรุณาลองใหม่ภายหลัง!",
+                        type: "warning",
+                        confirmButtonColor: "#0000FF",
+                        confirmButtonText: "ตกลง",
+                        closeOnConfirm: false
+                    });
                     checkStatus = "offline" ;
-
+                    $('#loading').show();
                 }else{
                     checkStatus = "online" ;
                 }
             }else{
-                // checkStatus = 0 ;
+                checkStatus = "online" ;
             }
         },
         async: false
     }).done(function (){
         $('.dv-background').hide();
     }).responseText;
-    if(checkStatus=="online"){
+    if(checkStatus!="offline"){
+        $('#loading').hide();
         $.each(JSON.parse(data),function(index,item){
             var list = {};
             discription.push(item.locationName);
@@ -165,16 +176,28 @@ function sourceAutoComplate() {
 function findAllFares(){
     $("#tableFares").DataTable().destroy();
     var checkStatus = "online";
-    $('#loading').show();
+    // $('#loading').show();
     var faresData = $.ajax({
         type: "GET", headers: { Accept: 'application/json' },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         url: session['context']+'/service/findAllFares',
+        complete:function(xhr){
+            if(xhr.readyState==4){
+                if(xhr.status==500){
+                    checkStatus = "offline" ;
+                }else{
+                    checkStatus = "online" ;
+                }
+            }else{
+                checkStatus = "online" ;
+            }
+        },
         async: false
     }).done(function (){
-        $('#loading').hide();
+        $('.dv-background').hide();
     }).responseText;
+    $('#loading').hide();
 
     $('#tbodyFares').empty();
     if(faresData.length == 0 ){
