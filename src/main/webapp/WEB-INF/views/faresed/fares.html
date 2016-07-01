@@ -30,7 +30,7 @@
             position: absolute;
             left: 0px;
             top: 0px;
-            z-index: 10000;
+            z-index: 10001;
             height: 100%;
             width: 100%;
             overflow: hidden;
@@ -41,6 +41,7 @@
         }
 
         .swal-wide{
+            z-index: 1000001;
             width:850px !important;
         }
         .alert{
@@ -738,7 +739,7 @@ and also iPads specifically.
                                 <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'csv',escape:'false'});">CSV</a>-->
                                 <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'pdf',escape:'false'});">PDF</a>-->
                                 <div align="right">
-                                    <button type="button" id="btnPrintTable" style="width: 10%" class="btn btn-info">Print</button>
+                                    <button type="button" id="btnPrintTable" style="width: 70px;" class="btn btn-info">Print</button>
                                 </div>
                                 <div id="tableHeader">
                                     <h5 id="h5Table">ตารางราคา</h5>
