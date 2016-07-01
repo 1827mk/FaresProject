@@ -17,6 +17,42 @@
         var _language = window.session.lang;
     </script>
     <style>
+
+        .table_overflow {
+            overflow: auto;
+            width:980px;
+        }
+
+        #loading
+        {
+            background-color: #333;
+            opacity: 0.8;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 10000;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-image: url('/Fares/images/loadginCustom.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            /*background:transparent url('/Fares/images/loadginCustom.svg') no-repeat 0 0;*/
+        }
+
+        .swal-wide{
+            width:850px !important;
+        }
+        .alert{
+            background-color: tomato;
+        }
+        .add{
+            background-color: green;
+            text-align: center;
+            color: white;
+            height: 70px;
+        }
+
         .marginTopcolPictureSlideOver1080{
             margin-top: 20px;
             margin-bottom: 20px;
@@ -295,6 +331,7 @@ and also iPads specifically.
     <link rel="stylesheet" type="text/css" href="/Fares/scripts/TableTools/css/dataTables.tableTools.css">
     <!---->
 
+
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -366,6 +403,11 @@ and also iPads specifically.
     };
 </script>
 <!--End Slide Show-->
+
+<!--Ajax Loading-->
+<div id="loading">
+
+</div>
 
 
 <!-- PAGE WRAP -->
@@ -690,11 +732,19 @@ and also iPads specifically.
                 <div class="col-sm-12 " >
                     <div class="form-horizontal">
                         <div class="well" id="wellCustom" >
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" >
+                                <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'json',escape:'false'});">JSON</a>-->
+                                <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'excel',escape:'false'});">XLS</a>-->
+                                <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'csv',escape:'false'});">CSV</a>-->
+                                <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'pdf',escape:'false'});">PDF</a>-->
+                                <div align="right">
+                                    <button type="button" id="btnPrintTable" style="width: 10%" class="btn btn-info">Print</button>
+                                </div>
                                 <div id="tableHeader">
                                     <h5 id="h5Table">ตารางราคา</h5>
                                 </div>
-                                <div class="table-responsive">
+
+                                <div class="table-responsive" id="printFares" >
                                     <table class="table table-responsive " id="tableFares">
                                         <thead >
                                         <th>สถานที่ต้นทาง</th>
@@ -721,7 +771,6 @@ and also iPads specifically.
         </div>
         </section>
         <!-- END / SEARCH TABS -->
-
 
         <script>
             jssor_1_slider_init();
@@ -797,6 +846,29 @@ and also iPads specifically.
     </div>
     <!-- END / PAGE WRAP -->
 
+    <div id="alertModal" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <center>
+                        <label id="messageHead">แจ้งเตือน</label>
+                    </center>
+                </div>
+                <div class="body">
+                    <center>
+                        <label id="messageBody"></label>
+                    </center>
+                </div>
+                <div class="modal-footer border">
+                    <center>
+                        <button id="btnModalAlertOk" class="btn btn-sm btn-primary"  data-dismiss="modal">OK</button>
+                    </center>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
 
     <!-- LOAD JQUERY -->
     <script type="text/javascript" src="/Fares/HtmlTemplate/js/lib/jquery-1.11.2.min.js"></script>
@@ -818,7 +890,16 @@ and also iPads specifically.
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="/Fares/scripts/TableTools/js/dataTables.tableTools.min.js"></script>
-
+    <!--Export-->
+    <script src="/Fares/scripts/tableExport/tableExport.js"></script>
+    <script src="/Fares/scripts/tableExport/jquery.base64.js"></script>
+    <script src="/Fares/scripts/tableExport/jspdf/libs/sprintf.js"></script>
+    <script src="/Fares/scripts/tableExport/jspdf/libs/base64.js"></script>
+    <script src="/Fares/scripts/tableExport/jspdf/jspdf.js"></script>
+    <script src="/Fares/scripts/tableExport/html2canvas.js"></script>
+    <!---->
+    <script src="/Fares/scripts/sweetalert-master/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Fares/scripts/sweetalert-master/dist/sweetalert.css">
     <script type="text/javascript" src="/Fares/scripts/faresJs/showFares.js"></script>
 
     <!-- REVOLUTION DEMO -->

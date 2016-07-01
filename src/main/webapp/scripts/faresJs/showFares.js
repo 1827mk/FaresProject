@@ -1,12 +1,12 @@
 /**
  * Created by tanaphatdev on 1/5/2559.
  */
+var dateCurrentClient;
 $(document).ready(function () {
     findAllFares();
     sourceAutoComplate();
     clearAll();
 });
-
 // Responseive
 $(window).on('load resize', function() {
 
@@ -48,6 +48,17 @@ $(window).on('load resize', function() {
 
 })
 
+function printData() {
+    var divToPrint=document.getElementById("tableFares");
+    newWin= window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+}
+$('#btnPrintTable').on('click',function(){
+    printData();
+})
+
 function clearAll() {
 
     $("#textAllFaresSource").val("");
@@ -67,11 +78,11 @@ function clearAll() {
     $("#textBusDestination").val("");
     
 }
-
 var dataCheck =[];
 var listdata =[];
 var discription = []
 function sourceAutoComplate() {
+    
     var checkStatus = "online" ;
     var data = $.ajax({
         type: "GET", headers: { Accept: 'application/json' },
@@ -151,63 +162,214 @@ function sourceAutoComplate() {
     }
 
 }
-
 function findAllFares(){
     $("#tableFares").DataTable().destroy();
     var checkStatus = "online";
-
+    $('#loading').show();
     var faresData = $.ajax({
         type: "GET", headers: { Accept: 'application/json' },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         url: session['context']+'/service/findAllFares',
-        complete:function(xhr){
-            if(xhr.readyState==4){
-                if(xhr.status==500){
-                    checkStatus = "offline" ;
-                    alert("Server Offline.");
-
-                }else{
-                    checkStatus = "online" ;
-                }
-            }else{
-                // checkStatus = 0 ;
-            }
-        },
         async: false
     }).done(function (){
-        $('.dv-background').hide();
+        $('#loading').hide();
     }).responseText;
 
     $('#tbodyFares').empty();
-    if(checkStatus == "online"){
-        $.each(JSON.parse(faresData),function(index,item){
+    if(faresData.length == 0 ){
+        swal({
+            title: "แจ้งเตือน",
+            text: "ไม่พบข้อมูล!",
+            type: "warning",
+            confirmButtonColor: "#0000FF",
+            confirmButtonText: "ตกลง",
+            closeOnConfirm: false
+        });
 
+    }else {
+        if(checkStatus == "online") {
+            $.each(JSON.parse(faresData), function (index, item) {
+                var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
+                var dates = date.split("-");
+                var dateOrigin = dates[2];
+                var monthOrigin = dates[1];
+                var yeaOrigin = dates[0];
+                var checkDateDuplicate = dateOrigin + '/' + monthOrigin + '/' + yeaOrigin;
+
+                var priceFares ;
+                var pricePromotion ;
+                var balance ;
+                var nameDatePros;
+
+                // ckeck date  In the past
+                var dateServer = new Date(checkDateDuplicate);
+                var todaysDate = new Date();
+
+                if (checkDateDuplicate == "10/10/2010") {
+                    checkDateDuplicate = "----------"
+                }else if(dateServer.setHours(0,0,0,0) > todaysDate.setHours(0,0,0,0))
+                {
+                    checkDateDuplicate = "----------";
+                     pricePromotion = 0.00;
+                     balance = item.price;
+                     nameDatePros = "----------";
+                    // console.log("OK")
+                }else{
+                    priceFares = item.price;
+                    pricePromotion = item.promote.promotePrice;
+                    balance = parseInt(priceFares - pricePromotion);
+                    nameDatePros=item.promote.promotion.promotionName;
+                    // console.log("NO")
+                }
+
+                $('#tbodyFares').append('<tr>' +
+                    '<td><center>' + (item.travel.locationSourName == null ? '' : item.travel.locationSourName) + '</center></td>' +
+                    '<td><center>' + (item.travel.locationDisName == null ? '' : item.travel.locationDisName) + '</center></td>' +
+                    '<td><center>' + (item.price == null ? '' : parseFloat(item.price).toFixed(2)) + '</center></td>' +
+                    '<td><center>' + (item.travel.transport.transportName == null ? '' : item.travel.transport.transportName) + '</center></td>' +
+                    '<td><center>' + (item.travel.transport.transportBusiness == null ? '' : item.travel.transport.transportBusiness) + '</center></td>' +
+                    '<td><center>' + (nameDatePros == null ? '' : nameDatePros) + '</center></td>' +
+                    '<td><center>' + (checkDateDuplicate == null ? '' : checkDateDuplicate) + '</center></td>' +
+                    '<td><center>' + (pricePromotion == null ? '' : parseFloat(pricePromotion).toFixed(2)) + '</center></td>' +
+                    '<td><center>' + (balance == null ? '' : parseFloat(balance).toFixed(2)) + '</center></td>' +
+                    '</tr>');
+                //
+                // faresPrototype[item.id]=item;
+            });
+            $('#tableFares').DataTable({
+                "sDom": 'T<"clear">lfrtip',
+                "oTableTools": {
+                    "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
+                    "aButtons": [
+                        {
+                            "sExtends": "xls",
+                            "sButtonText": "Export Excel.",
+                            "sFileName": "*.xls"
+                        },
+
+                    ]
+                },
+                "scrollY": "200px",
+                "bLengthChange": false,
+                "bSort": false,
+                "language": {
+                    "lengthMenu": "แสดง _MENU_ รายการ",
+                    "zeroRecords": "ไม่พบข้อมูล",
+                    "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+                    "infoEmpty": "ไม่พบเรคคอร์ด",
+                    "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+                    "decimal": "",
+                    "emptyTable": "ไม่มีข้อมูลในตาราง",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "loadingRecords": "โหลด...",
+                    "processing": "กำลังดำเนินการ...",
+                    "search": "ค้นหา:",
+                    "paginate": {
+                        "first": "หน้าแรก",
+                        "last": "หน้าสุดท้าย",
+                        "next": "ถัดไป",
+                        "previous": "ก่อนหน้า"
+                    },
+                    "aria": {
+                        "sortAscending": ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                        "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+                    }
+                }
+            });
+        }
+    }
+}
+function destroyDataTableFares() {
+    $('#tableFares').DataTable( {
+        paging: false
+    } );
+    $('#tableFares').DataTable( {
+        destroy: true,
+        searching: false
+    } );
+}
+// serchAll
+function searchAll(source,destination) {
+    var textSource = source;
+    var textDestination = destination;
+    $('#loading').show();
+    var faresData = $.ajax({
+                        type: "GET",
+                        headers:
+                        {
+                            Accept: 'application/json'
+                        },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: session['context']+'/service/searchAll',
+                        data : {
+                            source:textSource,
+                            destination:textDestination
+                        },
+        async: false,
+    }).done(function (){
+        //close loader
+        $('#loading').hide();
+    }).responseText;
+    $('#loading').hide();
+    $('#tbodyFares').empty();
+    if(faresData.length == 24 ){
+        swal({
+            title: "แจ้งเตือน",
+            text: "ไม่พบข้อมูล!",
+            type: "warning",
+            confirmButtonColor: "#0000FF",
+            confirmButtonText: "ตกลง",
+            closeOnConfirm: false
+        });
+
+    }else {
+        $.each(JSON.parse(faresData), function (index, item) {
             var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
             var dates = date.split("-");
             var dateOrigin = dates[2];
             var monthOrigin = dates[1];
             var yeaOrigin = dates[0];
-            var checkDateDuplicate = dateOrigin+'/'+monthOrigin+'/'+yeaOrigin;
+            var checkDateDuplicate = dateOrigin + '/' + monthOrigin + '/' + yeaOrigin;
 
-            if(checkDateDuplicate == "10/10/2010"){
+            var priceFares ;
+            var pricePromotion ;
+            var balance ;
+            var nameDatePros;
+
+            // ckeck date  In the past
+            var dateServer = new Date(checkDateDuplicate);
+            var todaysDate = new Date();
+
+            if (checkDateDuplicate == "10/10/2010") {
                 checkDateDuplicate = "----------"
+            }else if(dateServer.setHours(0,0,0,0) > todaysDate.setHours(0,0,0,0))
+            {
+                checkDateDuplicate = "----------";
+                pricePromotion = 0.00;
+                balance = item.price;
+                nameDatePros = "----------";
+                // console.log("OK")
+            }else{
+                priceFares = item.price;
+                pricePromotion = item.promote.promotePrice;
+                balance = parseInt(priceFares - pricePromotion);
+                nameDatePros=item.promote.promotion.promotionName;
+                // console.log("NO")
             }
-            var priceFares = item.price ;
-            var pricePromotion = item.promote.promotePrice;
-            var balance= parseInt(priceFares - pricePromotion);
-
 
             $('#tbodyFares').append('<tr>' +
-                '<td><center>'+(item.travel.locationSourName==null?'':item.travel.locationSourName)+'</center></td>' +
-                '<td><center>'+(item.travel.locationDisName==null?'':item.travel.locationDisName)+'</center></td>' +
-                '<td><center>'+(item.price==null?'':parseFloat(item.price).toFixed(2))+'</center></td>' +
-                '<td><center>'+(item.travel.transport.transportName==null?'':item.travel.transport.transportName)+'</center></td>' +
-                '<td><center>'+(item.travel.transport.transportBusiness==null?'':item.travel.transport.transportBusiness)+'</center></td>' +
-                '<td><center>'+(item.promote.promotion.promotionName==null?'':item.promote.promotion.promotionName)+'</center></td>' +
-                '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
-                '<td><center>'+(item.promote.promotePrice==null?'':parseFloat(item.promote.promotePrice).toFixed(2))+'</center></td>' +
-                '<td><center>'+(balance==null?'':parseFloat(balance).toFixed(2))+'</center></td>' +
+                '<td><center>' + (item.travel.locationSourName == null ? '' : item.travel.locationSourName) + '</center></td>' +
+                '<td><center>' + (item.travel.locationDisName == null ? '' : item.travel.locationDisName) + '</center></td>' +
+                '<td><center>' + (item.price == null ? '' : parseFloat(item.price).toFixed(2)) + '</center></td>' +
+                '<td><center>' + (item.travel.transport.transportName == null ? '' : item.travel.transport.transportName) + '</center></td>' +
+                '<td><center>' + (item.travel.transport.transportBusiness == null ? '' : item.travel.transport.transportBusiness) + '</center></td>' +
+                '<td><center>' + (nameDatePros == null ? '' : nameDatePros) + '</center></td>' +
+                '<td><center>' + (checkDateDuplicate == null ? '' : checkDateDuplicate) + '</center></td>' +
+                '<td><center>' + (pricePromotion == null ? '' : parseFloat(pricePromotion).toFixed(2)) + '</center></td>' +
+                '<td><center>' + (balance == null ? '' : parseFloat(balance).toFixed(2)) + '</center></td>' +
                 '</tr>');
             //
             // faresPrototype[item.id]=item;
@@ -216,21 +378,15 @@ function findAllFares(){
             "sDom": 'T<"clear">lfrtip',
             "oTableTools": {
                 "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
-                // "sSwfPath": "https://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
-                // "aButtons": [ 'copy', 'csv','pdf', 'print']
-                // "aButtons": [ 'copy', 'csv', 'print']
-
                 "aButtons": [
-                    'copy', 'csv','pdf', 'print' ,
                     {
                         "sExtends": "xls",
-                        "sButtonText": "xls.",
+                        "sButtonText": "Export Excel.",
                         "sFileName": "*.xls"
                     },
 
                 ]
             },
-            "scrollY":"200px",
             "bLengthChange" : false,
             "bSort": false,
             "language": {
@@ -258,108 +414,14 @@ function findAllFares(){
                 }
             }
         });
-
     }
-
-}
-function destroyDataTableFares() {
-    $('#tableFares').DataTable( {
-        paging: false
-    } );
-    $('#tableFares').DataTable( {
-        destroy: true,
-        searching: false
-    } );
-}
-// serchAll
-function searchAll(source,destination) {
-    var textSource = source;
-    var textDestination = destination;
-    var faresData = $.ajax({
-                        type: "GET",
-                        headers:
-                        {
-                            Accept: 'application/json'
-                        },
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        url: session['context']+'/service/searchAll',
-                        data : {
-                            source:textSource,
-                            destination:textDestination
-                        },
-                    async: false
-                    }).done(function (){
-                        //close loader
-                        $('.dv-background').hide();
-                    }).responseText;
-    
-    $('#tbodyFares').empty();
-    $.each(JSON.parse(faresData),function(index,item){
-
-        var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
-        var dates = date.split("-");
-        var dateOrigin = dates[2];
-        var monthOrigin = dates[1];
-        var yeaOrigin = dates[0];
-        var checkDateDuplicate = dateOrigin+'/'+monthOrigin+'/'+yeaOrigin;
-
-        if(checkDateDuplicate == "10/10/2010"){
-            checkDateDuplicate = "----------"
-        }
-        var priceFares = item.price ;
-        var pricePromotion = item.promote.promotePrice;
-        var balance= parseInt(priceFares - pricePromotion);
-
-
-        $('#tbodyFares').append('<tr>' +
-            '<td><center>'+(item.travel.locationSourName==null?'':item.travel.locationSourName)+'</center></td>' +
-            '<td><center>'+(item.travel.locationDisName==null?'':item.travel.locationDisName)+'</center></td>' +
-            '<td><center>'+(item.price==null?'':parseFloat(item.price).toFixed(2))+'</center></td>' +
-            '<td><center>'+(item.travel.transport.transportName==null?'':item.travel.transport.transportName)+'</center></td>' +
-            '<td><center>'+(item.travel.transport.transportBusiness==null?'':item.travel.transport.transportBusiness)+'</center></td>' +
-            '<td><center>'+(item.promote.promotion.promotionName==null?'':item.promote.promotion.promotionName)+'</center></td>' +
-            '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
-            '<td><center>'+(item.promote.promotePrice==null?'':parseFloat(item.promote.promotePrice).toFixed(2))+'</center></td>' +
-            '<td><center>'+(balance==null?'':parseFloat(balance).toFixed(2))+'</center></td>' +
-            '</tr>');
-        //
-        // faresPrototype[item.id]=item;
-    });
-    $('#tableFares').DataTable({
-        "bLengthChange" : false,
-        "bSort": false,
-        "language": {
-            "lengthMenu": "แสดง _MENU_ รายการ",
-            "zeroRecords": "ไม่พบข้อมูล",
-            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-            "infoEmpty": "ไม่พบเรคคอร์ด",
-            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
-            "decimal":        "",
-            "emptyTable":     "ไม่มีข้อมูลในตาราง",
-            "infoPostFix":    "",
-            "thousands":      ",",
-            "loadingRecords": "โหลด...",
-            "processing":     "กำลังดำเนินการ...",
-            "search":         "ค้นหา:",
-            "paginate": {
-                "first":      "หน้าแรก",
-                "last":       "หน้าสุดท้าย",
-                "next":       "ถัดไป",
-                "previous":   "ก่อนหน้า"
-            },
-            "aria": {
-                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
-                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
-            }
-        }
-    });
 }
 // search Trian and Bus
 function searchTransport(tranCode,source,destination) {
     var source = source ;
     var destination =  destination;
     var tranCodes = tranCode;
+    $('#loading').show();
     var faresData = $.ajax({
                             type: "GET",
                             headers:
@@ -374,80 +436,122 @@ function searchTransport(tranCode,source,destination) {
                                 destination:destination,
                                 tranCodes :tranCodes
                             },
-                            async: false
+                            async: false,
                         }).done(function (){
                             //close loader
-                            $('.dv-background').hide();
+                        $('#loading').hide();
                         }).responseText;
+    $('#loading').hide();
     $('#tbodyFares').empty();
-    $.each(JSON.parse(faresData),function(index,item){
+    if(faresData.length == 24 ){
+        swal({
+            title: "แจ้งเตือน",
+            text: "ไม่พบข้อมูล!",
+            type: "warning",
+            confirmButtonColor: "#0000FF",
+            confirmButtonText: "ตกลง",
+            closeOnConfirm: false
+        });
 
-        var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
-        var dates = date.split("-");
-        var dateOrigin = dates[2];
-        var monthOrigin = dates[1];
-        var yeaOrigin = dates[0];
-        var checkDateDuplicate = dateOrigin+'/'+monthOrigin+'/'+yeaOrigin;
+    }else {
+        $.each(JSON.parse(faresData), function (index, item) {
+            var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
+            var dates = date.split("-");
+            var dateOrigin = dates[2];
+            var monthOrigin = dates[1];
+            var yeaOrigin = dates[0];
+            var checkDateDuplicate = dateOrigin + '/' + monthOrigin + '/' + yeaOrigin;
 
-        if(checkDateDuplicate == "10/10/2010"){
-            checkDateDuplicate = "----------"
-        }
-        var priceFares = item.price ;
-        var pricePromotion = item.promote.promotePrice;
-        var balance= parseInt(priceFares - pricePromotion);
+            var priceFares ;
+            var pricePromotion ;
+            var balance ;
+            var nameDatePros;
 
+            // ckeck date  In the past
+            var dateServer = new Date(checkDateDuplicate);
+            var todaysDate = new Date();
 
-        $('#tbodyFares').append('<tr>' +
-            '<td><center>'+(item.travel.locationSourName==null?'':item.travel.locationSourName)+'</center></td>' +
-            '<td><center>'+(item.travel.locationDisName==null?'':item.travel.locationDisName)+'</center></td>' +
-            '<td><center>'+(item.price==null?'':parseFloat(item.price).toFixed(2))+'</center></td>' +
-            '<td><center>'+(item.travel.transport.transportName==null?'':item.travel.transport.transportName)+'</center></td>' +
-            '<td><center>'+(item.travel.transport.transportBusiness==null?'':item.travel.transport.transportBusiness)+'</center></td>' +
-            '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
-            '<td><center>'+(item.promote.promotion.promotionName==null?'':item.promote.promotion.promotionName)+'</center></td>' +
-            '<td><center>'+(item.promote.promotePrice==null?'':parseFloat(item.promote.promotePrice).toFixed(2))+'</center></td>' +
-            '<td><center>'+(balance==null?'':parseFloat(balance).toFixed(2))+'</center></td>' +
-            '</tr>');
-        //
-        // faresPrototype[item.id]=item;
-    });
-    $('#tableFares').DataTable({
-        "bLengthChange" : false,
-        "bSort": false,
-        "language": {
-            "lengthMenu": "แสดง _MENU_ รายการ",
-            "zeroRecords": "ไม่พบข้อมูล",
-            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-            "infoEmpty": "ไม่พบเรคคอร์ด",
-            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
-            "decimal":        "",
-            "emptyTable":     "ไม่มีข้อมูลในตาราง",
-            "infoPostFix":    "",
-            "thousands":      ",",
-            "loadingRecords": "โหลด...",
-            "processing":     "กำลังดำเนินการ...",
-            "search":         "ค้นหา:",
-            "paginate": {
-                "first":      "หน้าแรก",
-                "last":       "หน้าสุดท้าย",
-                "next":       "ถัดไป",
-                "previous":   "ก่อนหน้า"
-            },
-            "aria": {
-                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
-                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+            if (checkDateDuplicate == "10/10/2010") {
+                checkDateDuplicate = "----------"
+            }else if(dateServer.setHours(0,0,0,0) > todaysDate.setHours(0,0,0,0))
+            {
+                checkDateDuplicate = "----------";
+                pricePromotion = 0.00;
+                balance = item.price;
+                nameDatePros = "----------";
+                // console.log("OK")
+            }else{
+                priceFares = item.price;
+                pricePromotion = item.promote.promotePrice;
+                balance = parseInt(priceFares - pricePromotion);
+                nameDatePros=item.promote.promotion.promotionName;
+                // console.log("NO")
             }
-        }
-    });
+
+            $('#tbodyFares').append('<tr>' +
+                '<td><center>' + (item.travel.locationSourName == null ? '' : item.travel.locationSourName) + '</center></td>' +
+                '<td><center>' + (item.travel.locationDisName == null ? '' : item.travel.locationDisName) + '</center></td>' +
+                '<td><center>' + (item.price == null ? '' : parseFloat(item.price).toFixed(2)) + '</center></td>' +
+                '<td><center>' + (item.travel.transport.transportName == null ? '' : item.travel.transport.transportName) + '</center></td>' +
+                '<td><center>' + (item.travel.transport.transportBusiness == null ? '' : item.travel.transport.transportBusiness) + '</center></td>' +
+                '<td><center>' + (nameDatePros == null ? '' : nameDatePros) + '</center></td>' +
+                '<td><center>' + (checkDateDuplicate == null ? '' : checkDateDuplicate) + '</center></td>' +
+                '<td><center>' + (pricePromotion == null ? '' : parseFloat(pricePromotion).toFixed(2)) + '</center></td>' +
+                '<td><center>' + (balance == null ? '' : parseFloat(balance).toFixed(2)) + '</center></td>' +
+                '</tr>');
+            //
+            // faresPrototype[item.id]=item;
+        });
+        $('#tableFares').DataTable({
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
+                "aButtons": [
+                    {
+                        "sExtends": "xls",
+                        "sButtonText": "Export Excel.",
+                        "sFileName": "*.xls"
+                    },
+
+                ]
+            },
+            "bLengthChange": false,
+            "bSort": false,
+            "language": {
+                "lengthMenu": "แสดง _MENU_ รายการ",
+                "zeroRecords": "ไม่พบข้อมูล",
+                "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+                "infoEmpty": "ไม่พบเรคคอร์ด",
+                "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+                "decimal": "",
+                "emptyTable": "ไม่มีข้อมูลในตาราง",
+                "infoPostFix": "",
+                "thousands": ",",
+                "loadingRecords": "โหลด...",
+                "processing": "กำลังดำเนินการ...",
+                "search": "ค้นหา:",
+                "paginate": {
+                    "first": "หน้าแรก",
+                    "last": "หน้าสุดท้าย",
+                    "next": "ถัดไป",
+                    "previous": "ก่อนหน้า"
+                },
+                "aria": {
+                    "sortAscending": ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                    "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+                }
+            }
+        });
+    }
 
 }
-
 // searchFlight
 function searchFlightTransport(source,destination,trainCode,busCode) {
     var source = source ;
     var destination =  destination;
     var trainCodes = trainCode;
     var busCodes = busCode;
+    $('#loading').show();
     var faresData = $.ajax({
                         type: "GET",
                         headers:
@@ -465,72 +569,111 @@ function searchFlightTransport(source,destination,trainCode,busCode) {
                             },async: false
                         }).done(function (){
                             //close loader
-                            $('.dv-background').hide();
+                        $('#loading').hide();
                         }).responseText;
+    $('#loading').hide();
     $('#tbodyFares').empty();
-    $.each(JSON.parse(faresData),function(index,item){
+    if(faresData.length == 24 ){
+        swal({
+            title: "แจ้งเตือน",
+            text: "ไม่พบข้อมูล!",
+            type: "warning",
+            confirmButtonColor: "#0000FF",
+            confirmButtonText: "ตกลง",
+            closeOnConfirm: false
+        });
 
-        var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
-        var dates = date.split("-");
-        var dateOrigin = dates[2];
-        var monthOrigin = dates[1];
-        var yeaOrigin = dates[0];
-        var checkDateDuplicate = dateOrigin+'/'+monthOrigin+'/'+yeaOrigin;
+    }else {
+        $.each(JSON.parse(faresData), function (index, item) {
+            var date = new Date(item.promote.dateFares.dateFared).toISOString().split("T")[0];
+            var dates = date.split("-");
+            var dateOrigin = dates[2];
+            var monthOrigin = dates[1];
+            var yeaOrigin = dates[0];
+            var checkDateDuplicate = dateOrigin + '/' + monthOrigin + '/' + yeaOrigin;
 
-        if(checkDateDuplicate == "10/10/2010"){
-            checkDateDuplicate = "----------"
-        }
-        var priceFares = item.price ;
-        var pricePromotion = item.promote.promotePrice;
-        var balance= parseInt(priceFares - pricePromotion);
+            var priceFares ;
+            var pricePromotion ;
+            var balance ;
+            var nameDatePros;
 
+            // ckeck date  In the past
+            var dateServer = new Date(checkDateDuplicate);
+            var todaysDate = new Date();
 
-        $('#tbodyFares').append('<tr>' +
-            '<td><center>'+(item.travel.locationSourName==null?'':item.travel.locationSourName)+'</center></td>' +
-            '<td><center>'+(item.travel.locationDisName==null?'':item.travel.locationDisName)+'</center></td>' +
-            '<td><center>'+(item.price==null?'':parseFloat(item.price).toFixed(2))+'</center></td>' +
-            '<td><center>'+(item.travel.transport.transportName==null?'':item.travel.transport.transportName)+'</center></td>' +
-            '<td><center>'+(item.travel.transport.transportBusiness==null?'':item.travel.transport.transportBusiness)+'</center></td>' +
-            '<td><center>'+(checkDateDuplicate==null?'':checkDateDuplicate)+'</center></td>' +
-            '<td><center>'+(item.promote.promotion.promotionName==null?'':item.promote.promotion.promotionName)+'</center></td>' +
-            '<td><center>'+(item.promote.promotePrice==null?'':parseFloat(item.promote.promotePrice).toFixed(2))+'</center></td>' +
-            '<td><center>'+(balance==null?'':parseFloat(balance).toFixed(2))+'</center></td>' +
-            '</tr>');
-        //
-        // faresPrototype[item.id]=item;
-    });
-    $('#tableFares').DataTable({
-        "bLengthChange" : false,
-        "bSort": false,
-        "language": {
-            "lengthMenu": "แสดง _MENU_ รายการ",
-            "zeroRecords": "ไม่พบข้อมูล",
-            "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
-            "infoEmpty": "ไม่พบเรคคอร์ด",
-            "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
-            "decimal":        "",
-            "emptyTable":     "ไม่มีข้อมูลในตาราง",
-            "infoPostFix":    "",
-            "thousands":      ",",
-            "loadingRecords": "โหลด...",
-            "processing":     "กำลังดำเนินการ...",
-            "search":         "ค้นหา:",
-            "paginate": {
-                "first":      "หน้าแรก",
-                "last":       "หน้าสุดท้าย",
-                "next":       "ถัดไป",
-                "previous":   "ก่อนหน้า"
-            },
-            "aria": {
-                "sortAscending":  ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
-                "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+            if (checkDateDuplicate == "10/10/2010") {
+                checkDateDuplicate = "----------"
+            }else if(dateServer.setHours(0,0,0,0) > todaysDate.setHours(0,0,0,0))
+            {
+                checkDateDuplicate = "----------";
+                pricePromotion = 0.00;
+                balance = item.price;
+                nameDatePros = "----------";
+                // console.log("OK")
+            }else{
+                priceFares = item.price;
+                pricePromotion = item.promote.promotePrice;
+                balance = parseInt(priceFares - pricePromotion);
+                nameDatePros=item.promote.promotion.promotionName;
+                // console.log("NO")
             }
-        }
-    });
+
+            $('#tbodyFares').append('<tr>' +
+                '<td><center>' + (item.travel.locationSourName == null ? '' : item.travel.locationSourName) + '</center></td>' +
+                '<td><center>' + (item.travel.locationDisName == null ? '' : item.travel.locationDisName) + '</center></td>' +
+                '<td><center>' + (item.price == null ? '' : parseFloat(item.price).toFixed(2)) + '</center></td>' +
+                '<td><center>' + (item.travel.transport.transportName == null ? '' : item.travel.transport.transportName) + '</center></td>' +
+                '<td><center>' + (item.travel.transport.transportBusiness == null ? '' : item.travel.transport.transportBusiness) + '</center></td>' +
+                '<td><center>' + (nameDatePros == null ? '' : nameDatePros) + '</center></td>' +
+                '<td><center>' + (checkDateDuplicate == null ? '' : checkDateDuplicate) + '</center></td>' +
+                '<td><center>' + (pricePromotion == null ? '' : parseFloat(pricePromotion).toFixed(2)) + '</center></td>' +
+                '<td><center>' + (balance == null ? '' : parseFloat(balance).toFixed(2)) + '</center></td>' +
+                '</tr>');
+            //
+            // faresPrototype[item.id]=item;
+        });
+        $('#tableFares').DataTable({
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+                "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
+                "aButtons": [
+                    {
+                        "sExtends": "xls",
+                        "sButtonText": "Export Excel.",
+                        "sFileName": "*.xls"
+                    },
+
+                ]
+            },
+            "bLengthChange": false,
+            "bSort": false,
+            "language": {
+                "lengthMenu": "แสดง _MENU_ รายการ",
+                "zeroRecords": "ไม่พบข้อมูล",
+                "info": "แสดง _START_ ถึง _END_ จาก _TOTAL_ แถว",
+                "infoEmpty": "ไม่พบเรคคอร์ด",
+                "infoFiltered": "(กรองข้อมูล _MAX_ แถว)",
+                "decimal": "",
+                "emptyTable": "ไม่มีข้อมูลในตาราง",
+                "infoPostFix": "",
+                "thousands": ",",
+                "loadingRecords": "โหลด...",
+                "processing": "กำลังดำเนินการ...",
+                "search": "ค้นหา:",
+                "paginate": {
+                    "first": "หน้าแรก",
+                    "last": "หน้าสุดท้าย",
+                    "next": "ถัดไป",
+                    "previous": "ก่อนหน้า"
+                },
+                "aria": {
+                    "sortAscending": ": เปิดใช้งานคอลัมน์ในการจัดเรียงจากน้อยไปมาก",
+                    "sortDescending": ": เปิดใช้งานคอลัมน์ในการเรียงลำดับจากมากไปน้อย"
+                }
+            }
+        });
+    }
 }
-
-
-
 
 $('input').tooltip({
     position: { my: 'center bottom' , at: 'right right-100' },
@@ -670,7 +813,6 @@ $('#btnTrainOk').on('click',function () {
         }
     }
 });
-
 $('#btnBusOk').on('click',function () {
     $("#tableFares").DataTable().destroy();
     var source ;
