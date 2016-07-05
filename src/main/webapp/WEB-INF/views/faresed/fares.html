@@ -193,7 +193,31 @@ and also iPads specifically.
         table#tableFares.table.table-responsive.dataTable.no-footer tbody#tbodyFares.table.table-responsive tr.odd td center{
             font-size: small;
         }
+        html body div#page-wrap div#bodyFares div.container div.row div.col-sm-12 div.form-horizontal div#wellCustom.well form.form-horizontal div#printFares.table-responsive div#tableFares_wrapper.dataTables_wrapper.no-footer div.dataTables_scroll div.dataTables_scrollBody table#tableFares.table.table-responsive.no-footer.dataTable tbody#tbodyFares.table.table-responsive tr.odd td{
+            color: black;
+        }
+        html body div#page-wrap div#bodyFares div.container div.row div.col-sm-12 div.form-horizontal div#wellCustom.well form.form-horizontal div#printFares.table-responsive div#tableFares_wrapper.dataTables_wrapper.no-footer div.dataTables_scroll div.dataTables_scrollBody table#tableFares.table.table-responsive.no-footer.dataTable tbody#tbodyFares.table.table-responsive tr.even td{
+            color: black;
+        }
 
+        /*hide sort*/
+
+        .sorting_disabled,.sorting_asc,.sorting_desc,.sorting
+        {
+            background-image:none !important;
+        }
+
+        .sorting, .sorting_asc, .sorting_desc {
+            background-image:none !important;
+        }
+
+        .dataTable > thead > tr > th[class*="sort"]:after{
+            content: "" !important;
+        }
+
+        .dataTable .rich-sort-icon {
+            display: none;
+        }
         /*@media*/
         /*only screen and (max-width: 767px),*/
         /*(min-device-width: 414px) and (max-device-width: 767px) {*/
