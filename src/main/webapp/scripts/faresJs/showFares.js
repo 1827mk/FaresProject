@@ -7,6 +7,7 @@ $(document).ready(function () {
     findAllFares();
     clearAll();
     sourceAutoComplate();
+    $('.sorting_disabled').removeClass('sorting_asc');
 
 });
 // Responseive
@@ -273,6 +274,7 @@ function findAllFares(){
 
                     ]
                 },
+                "bSortable": false ,
                 "scrollY": "200px",
                 "bLengthChange": false,
                 "bSort": false,
@@ -410,6 +412,7 @@ function searchAll(source,destination) {
 
                 ]
             },
+            "bSortable": false ,
             "bLengthChange" : false,
             "bSort": false,
             "language": {
@@ -538,6 +541,7 @@ function searchTransport(tranCode,source,destination) {
 
                 ]
             },
+            "bSortable": false ,
             "bLengthChange": false,
             "bSort": false,
             "language": {
@@ -668,6 +672,7 @@ function searchFlightTransport(source,destination,trainCode,busCode) {
 
                 ]
             },
+            "bSortable": false ,
             "bLengthChange": false,
             "bSort": false,
             "language": {
