@@ -34,9 +34,9 @@ public class RestService extends AbstractFaresEngine {
     }
 
 
-    public ResponseEntity<String> searchTransport(String source , String destination ,String tranCode){
+    public ResponseEntity<String> searchByTrans(String source , String destination ,String tranCodes){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://" + this.HRMSServer + "/faresesEngine/searchByTransport/"+source+"/"+destination+"/"+tranCode;
+        String url = "http://" + this.HRMSServer + "/faresesEngine/searchByTrans/"+source+"/"+destination+"/"+tranCodes;
 //        logger.error("searchTransport =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
         return getResultStringByTypeHttpMethodAndBodyContent("parameters", HttpMethod.GET,url,restTemplate);
     }

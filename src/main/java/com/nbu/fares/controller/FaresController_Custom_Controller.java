@@ -68,9 +68,9 @@ public class FaresController_Custom_Controller {
         }
     }
 
-    @RequestMapping(value = "/searchTransport", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "/searchByTrans", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> searchTransport(@RequestParam(value = "source",required = false)String source,
+    public ResponseEntity<String> searchByTrans(@RequestParam(value = "source",required = false)String source,
                                               @RequestParam(value = "destination",required = false)String destination,
                                               @RequestParam(value = "tranCodes",required = false)String tranCode) {
         HttpHeaders headers = new HttpHeaders();
@@ -78,7 +78,7 @@ public class FaresController_Custom_Controller {
         ResponseEntity<String> result = null;
         try{
 //            logger.error("searchPlane =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
-            return   restService.searchTransport(source,destination,tranCode);
+            return   restService.searchByTrans(source,destination,tranCode);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
 
