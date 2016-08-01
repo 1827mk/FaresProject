@@ -17,38 +17,10 @@
         var _language = window.session.lang;
     </script>
     <style>
-        @media print
-        {
-            #pager,
-            form,
-            .no-print
-            {
-                display: none !important;
-                height: 0;
-            }
-            .DTTT_button* {
-                display: none !important;
-                height: 0;
-            }
 
-            .no-print, .no-print *{
-                display: none !important;
-                height: 0;
-            }
-        }
-
-        #tableFares_filter{
+        html body div#page-wrap div#bodyFares div.container div.row div.col-sm-12 div.form-horizontal div#wellCustom.well form.form-horizontal div#printFares.table-responsive div#tableFares_wrapper.dataTables_wrapper.no-footer div#tableFares_filter.dataTables_filter{
             float: left;
         }
-
-        #ZeroClipboard_TableToolsMovie_1{
-            display: none;
-        }
-        /*.dropdown { float: right; }*/
-
-        #slider-revolution:after{
-            height: 350px;
-        }​
         .table_overflow {
             overflow: auto;
             width:980px;
@@ -483,31 +455,31 @@ and also iPads specifically.
                 </div>
                 <!-- END / LOGO -->
 
-                <!-- NAVIGATION -->
-                <nav class="navigation awe-navigation" data-responsive="1200">
-                    <ul class="menu-list">
-                        <li class="menu-item-has-children current-menu-parent">
-                            <!--<a href="#">หน้าแรก</a>-->
-                            <!--<ul class="sub-menu">-->
-                                <!--<li class="current-menu-item"><a href="#">เกี่ยวกับ</a></li>-->
-                                <!--<li><a href="#">ผู้จัดทำ</a></li>-->
-                                <!--<li><a href="#">ติดต่อเรา</a></li>-->
-                            <!--</ul>-->
-                        </li>
-                    </ul>
-                </nav>
-                <!-- END / NAVIGATION -->
+                <!--&lt;!&ndash; NAVIGATION &ndash;&gt;-->
+                <!--<nav class="navigation awe-navigation" data-responsive="1200">-->
+                <!--<ul class="menu-list">-->
+                <!--<li class="menu-item-has-children current-menu-parent">-->
+                <!--<a href="#">หน้าแรก</a>-->
+                <!--<ul class="sub-menu">-->
+                <!--<li class="current-menu-item"><a href="#">เกี่ยวกับ</a></li>-->
+                <!--<li><a href="#">ผู้จัดทำ</a></li>-->
+                <!--<li><a href="#">ติดต่อเรา</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</nav>-->
+                <!--&lt;!&ndash; END / NAVIGATION &ndash;&gt;-->
 
-                <!-- SEARCH BOX -->
+                <!--&lt;!&ndash; SEARCH BOX &ndash;&gt;-->
                 <!--<div class="search-box">-->
-                    <!--<span class="searchtoggle"><i class="awe-icon awe-icon-search"></i></span>-->
-                    <!--<form class="form-search">-->
-                        <!--<div class="form-item">-->
-                            <!--<input type="text" value="Search &amp; hit enter">-->
-                        <!--</div>-->
-                    <!--</form>-->
+                <!--<span class="searchtoggle"><i class="awe-icon awe-icon-search"></i></span>-->
+                <!--<form class="form-search">-->
+                <!--<div class="form-item">-->
+                <!--<input type="text" value="Search &amp; hit enter">-->
                 <!--</div>-->
-                <!-- END / SEARCH BOX -->
+                <!--</form>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; END / SEARCH BOX &ndash;&gt;-->
 
 
                 <!-- TOGGLE MENU RESPONSIVE -->
@@ -794,29 +766,30 @@ and also iPads specifically.
                                 <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'excel',escape:'false'});">XLS</a>-->
                                 <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'csv',escape:'false'});">CSV</a>-->
                                 <!--<a href="#" onClick ="$('#tableFares').tableExport({type:'pdf',escape:'false'});">PDF</a>-->
-
+                                <!--<div align="right">-->
+                                <!--<button type="button" id="btnPrintTable" style="width: 70px;" class="btn btn-info">Print</button>-->
+                                <!--</div>-->
                                 <div id="tableHeader">
                                     <h5 id="h5Table">ตารางราคา</h5>
                                 </div>
 
-                                <div class="table-responsive" id="printFares"  >
-                                    <div id="dataTableFaresPrint">
-                                        <table class="table table-responsive " id="tableFares">
-                                            <thead >
-                                            <th>สถานที่ต้นทาง</th>
-                                            <th>สถานที่ปลายทาง</th>
-                                            <th>ราคา (บาท)</th>
-                                            <th>พาหนะเดินทาง</th>
-                                            <th>บริษัท</th>
-                                            <th>โปรโมชั่น</th>
-                                            <th>วันที่</th>
-                                            <th>ส่วนลด (%)</th>
-                                            <th>ยอดสุทธิ (บาท)</th>
-                                            </thead>
-                                            <tbody id="tbodyFares" class="table table-responsive" >
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="table-responsive" id="printFares" >
+                                    <table class="table table-responsive " id="tableFares">
+                                        <thead >
+                                        <th>สถานที่ต้นทาง</th>
+                                        <th>สถานที่ปลายทาง</th>
+                                        <th>ราคา (บาท)</th>
+                                        <th>พาหนะเดินทาง</th>
+                                        <th>บริษัท</th>
+                                        <th>โปรโมชั่น</th>
+                                        <th>วันที่</th>
+                                        <th>ส่วนลด (บาท)</th>
+                                        <th>ยอดสุทธิ (บาท)</th>
+                                        </thead>
+                                        <tbody id="tbodyFares" class="table table-responsive" >
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </form>
                         </div>
@@ -843,13 +816,13 @@ and also iPads specifically.
 
 
         <!-- FOOTER PAGE -->
-        <footer id="footer-page" style="margin-top: -100px;">
-            <div class="container" style="margin-top: -10px;">
-                <div class="row" style="height: 297px">
+        <footer id="footer-page">
+            <div class="container">
+                <div class="row">
                     <!-- WIDGET -->
                     <div class="col-md-3">
                         <div class="widget widget_contact_info">
-                            <div class="widget_background" >
+                            <div class="widget_background">
                                 <div class="widget_background__half" style="height: 300px;">
                                     <div class="bg"></div>
                                 </div>
@@ -893,8 +866,8 @@ and also iPads specifically.
                     <!-- END / WIDGET -->
 
                 </div>
-                <div class="copyright" style="text-align: left;">
-                    <p >©2016 FARES™ All rights reserved.</p>
+                <div class="copyright">
+                    <p>©2016 FARES™ All rights reserved.</p>
                 </div>
             </div>
         </footer>

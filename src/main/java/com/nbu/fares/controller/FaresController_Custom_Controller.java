@@ -29,7 +29,7 @@ public class FaresController_Custom_Controller {
     protected RestService restService;
 
     @RequestMapping(value = "/findAllFares",method = RequestMethod.GET,headers = "Accept=application/json")
-        public ResponseEntity<String> findAllFares(){
+    public ResponseEntity<String> findAllFares(){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         try{
@@ -68,17 +68,17 @@ public class FaresController_Custom_Controller {
         }
     }
 
-    @RequestMapping(value = "/searchByTrans", method = RequestMethod.GET, headers = "Accept=application/json")
+    @RequestMapping(value = "/searchTransport", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> searchByTrans(@RequestParam(value = "source",required = false)String source,
-                                              @RequestParam(value = "destination",required = false)String destination,
-                                              @RequestParam(value = "tranCodes",required = false)String tranCode) {
+    public ResponseEntity<String> searchTransport(@RequestParam(value = "source",required = false)String source,
+                                                  @RequestParam(value = "destination",required = false)String destination,
+                                                  @RequestParam(value = "tranCodes",required = false)String tranCodes) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;
         try{
 //            logger.error("searchPlane =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
-            return   restService.searchByTrans(source,destination,tranCode);
+            return   restService.searchTransport(source,destination,tranCodes);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -88,9 +88,9 @@ public class FaresController_Custom_Controller {
     @RequestMapping(value = "/searchFlightTransport", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> searchFlightTransport(@RequestParam(value = "source",required = false)String source,
-                                                  @RequestParam(value = "destination",required = false)String destination,
-                                                  @RequestParam(value = "trainCode",required = false)String trainCode,
-                                                  @RequestParam(value = "busCode",required = false)String busCode) {
+                                                        @RequestParam(value = "destination",required = false)String destination,
+                                                        @RequestParam(value = "trainCode",required = false)String trainCode,
+                                                        @RequestParam(value = "busCode",required = false)String busCode) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;

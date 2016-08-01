@@ -52,22 +52,22 @@ $(window).on('load resize', function() {
 })
 
 function printData() {
-    var divToPrint=document.getElementById("dataTableFaresPrint");
+    var divToPrint=document.getElementById("printFares");
     newWin= window.open("");
+    $("#tableFares_filter").css("display","none");
     $("#ToolTables_tableFares_0").css("display","none");
     $("#ToolTables_tableFares_1").css("display","none");
     $("#ToolTables_tableFares_2").css("display","none");
-    $("#tableFares_filter").css("display","none");
     $("#tableFares_info").css("display","none");
     $("#tableFares_previous").css("display","none");
     $("#tableFares_next").css("display","none");
     $(".paginate_button").css("display","none");
     newWin.document.write(divToPrint.outerHTML);
     newWin.print();
+    $("#tableFares_filter").css("display","inline");
     $("#ToolTables_tableFares_0").css("display","inline");
     $("#ToolTables_tableFares_1").css("display","inline");
     $("#ToolTables_tableFares_2").css("display","inline");
-    $("#tableFares_filter").css("display","inline");
     $("#tableFares_info").css("display","inline");
     $("#tableFares_previous").css("display","inline");
     $("#tableFares_next").css("display","inline");
@@ -191,6 +191,27 @@ function sourceAutoComplate() {
 
 }
 var checkStatus = "online";
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'print',
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                            '<img src="http://datatables.net/media/images/logo-fade.png" style="position:absolute; top:0; left:0;" />'
+                        );
+
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                }
+            }
+        ]
+    } );
+} );
 function findAllFares(){
     $("#tableFares").DataTable().destroy();
 
@@ -287,6 +308,8 @@ function findAllFares(){
             });
             $('#tableFares').DataTable({
                 "sDom": 'T<"clear">lfrtip',
+
+                // "dom": '<"pull-left"f><"pull-right"l>tip',
                 "oTableTools": {
                     "sSwfPath": "/Fares/scripts/TableTools/swf/copy_csv_xls_pdf.swf",
                     "aButtons": [
@@ -303,10 +326,11 @@ function findAllFares(){
                             }
 
                         }
+
                     ]
                 },
                 "bSortable": false ,
-                "scrollY": "450px",
+                "scrollY": "800px",
                 "bLengthChange": false,
                 "bSort": false,
                 "language": {
@@ -460,7 +484,7 @@ function searchAll(source,destination) {
                     ]
                 },
                 "bSortable": false ,
-                "scrollY": "450px",
+                "scrollY": "800px",
                 "bLengthChange": false,
                 "bSort": false,
                 "language": {
@@ -505,7 +529,7 @@ function searchTransport(tranCode,source,destination) {
         },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        url: session['context']+'/service/searchByTrans',
+        url: session['context']+'/service/searchTransport',
         data : {
             source:source,
             destination:destination,
@@ -607,7 +631,7 @@ function searchTransport(tranCode,source,destination) {
                     ]
                 },
                 "bSortable": false ,
-                "scrollY": "450px",
+                "scrollY": "800px",
                 "bLengthChange": false,
                 "bSort": false,
                 "language": {
@@ -755,7 +779,7 @@ function searchFlightTransport(source,destination,trainCode,busCode) {
                     ]
                 },
                 "bSortable": false ,
-                "scrollY": "450px",
+                "scrollY": "800px",
                 "bLengthChange": false,
                 "bSort": false,
                 "language": {
