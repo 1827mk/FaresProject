@@ -72,13 +72,13 @@ public class FaresController_Custom_Controller {
     @ResponseBody
     public ResponseEntity<String> searchTransport(@RequestParam(value = "source",required = false)String source,
                                               @RequestParam(value = "destination",required = false)String destination,
-                                              @RequestParam(value = "tranCodes",required = false)String tranCode) {
+                                              @RequestParam(value = "tranCodes",required = false)String tranCodes) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         ResponseEntity<String> result = null;
         try{
 //            logger.error("searchPlane =="+source+"=="+destination+"=="+tranCode+"=="+"\n");
-            return   restService.searchTransport(source,destination,tranCode);
+            return   restService.searchTransport(source,destination,tranCodes);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
 
