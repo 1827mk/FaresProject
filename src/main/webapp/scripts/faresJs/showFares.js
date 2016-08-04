@@ -992,5 +992,3 @@ $('#btnBusOk').on('click',function () {
         }
     }
 });
-
-
